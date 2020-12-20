@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/profile-edit.css' %}">
+{% endblock %} 
+
+{% block content %}
+
+<div class="entire-body" id="enbo">
+        <div id="account-user">
+            <div class="account-heading" style="font-size:18px;font-weight:800">Account</div>
+             <div class="img-photo">
+                 <div class="AHI"><img src="{{user.profile.image.url}}" alt="" width="30px"
+                    height="30px" style="border-radius: 50%; margin-right: 5px;"></div>
+                <div>{{user.username}}</div>
+             </div>
+            </div>
+        <div class="profile-body">
+            <div class="other-info-list">
+                <div class="info-list">
+                    <div class="profile-img info">
+                        <img src="{{user.profile.image.url}}" alt="" width="100px"
+                            height="100px" style="border-radius: 50%;">
+                    </div>
+                    <div class="dashboard info">
+                        <a href="">Dashboard</a>
+                    </div>
+                    <div class="account info">
+                        <div class="seg">ACCOUNT</div>
+                        <a href="{% url 'profile-details' %}" id="profile">Profile</a>
+                        <br>
+                        <a href="" id="address">Addresses</a>
+                    </div>
+                    <div class="order info">
+                        <div class="seg">ORDERS</div>
+                        <a href="" id="orders">Orders & Returns</a>
+                    </div>
+                    <div class="payment info " style="border-bottom: none;">
+                        <div class="seg">PAYMENT OPTION</div>
+                        <a href="" id="g-p"><i class="fab fa-google"> </i>-Pay</a>
+                        <br>
+                        <a href="" id="p-p">Phone-Pe</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="profile-details">
+                <div class="info-name">
+                    Edit Profile
+                </div>
+                <div class="edit-form">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="xp name">
+                            <div class="nm">
+                              Name
+                            </div>
+                            <div class="val">
+                                {% render_field u_form.username id='name' required='true' autocomplete='off'  %}
+                                <!-- <input type="text" name="name" value="{{user.username}}"> -->
+                            </div>
+                        </div>
+                       
+                        <div class="xp phone">
+                            <div class="nm">
+                              Phone
+                            </div>
+                            <div class="val">
+                               {% render_field p_form.phone  id="phone" autocomplete='off'  %}
+                            </div>
+                        </div>
+                        <div class="xp email">
+                            <div class="nm">
+                              Email
+                            </div>
+                            <div class="val">
+                                <!-- <input type="email" readonly name="email" value="{{user.email}}" > -->
+                                {% render_field u_form.email  id="email" autocomplete='off'  %}
+                            </div>
+                        </div>
+                      
+                        <div class="xp" id="gender">
+                            <div class="nm">
+                                Gender
+                            </div>
+                           <div class="val" id="valgen">
+                            {% render_field p_form.gender  id="genders" autocomplete='off'  %}
+                
+                                <div class="gen1" id="gn1">
+                                    <button  id="genbut1" type="button" >
+                                        <i id="tik1" class="fas fa-check ch"></i>
+                                        <!-- {% render_field p_form.gender  id="genders" autocomplete='off'  %} -->
+                                        <!-- <input id="gen-val" readonly class="gen" name="gender" type="text" value="MALE"> -->
+                                        <!-- <label for="gender">MALE</label> -->
+                                       <span style="color: black;">MALE</span>
+                                    </button>
+                                 </div>
+                              <div class="gen2" id="gn2">
+                                  <button  id="genbut2" class="genbut" type="button" >
+                                    <i id="tik2" class="fas fa-check ch"></i>
+                                    <span style="color: black;">FEMALE</span>
+                                    <!-- {% render_field p_form.gender  id="phone" autocomplete='off' value="{{FEMALE}}"  %} -->
+                                     <!-- <input id="gen-val-2" readonly class="gen" type="text" name="gender" value="FEMALE"> -->
+                                    </button>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="xp Date">
+                            <div class="nm">
+                              DOB
+                            </div>
+                            <div class="val">
+                                {% render_field p_form.birth_date  id="phone" autocomplete='off'  %}
+
+                
+                            </div>
+                        </div>
+                        <div class="xp Loaction">
+                            <div class="nm">
+                             Loaction
+                            </div>
+                            <div class="val">
+                                <input type="text" value="Delhi">
+                            </div>
+                        </div>
+                        <div class="xp altmobile">
+                            <div class="nm">
+                                Alternate<i class="fas fa-mobile-alt" style="margin-left:10px;"></i>
+                            </div>
+                            <div class="val">
+                                <input id="altmob" readonly type="tel" name="AlternateMobile" pattern="[1-9]{1}[0-9]{9}">
+                               
+                            </div>
+                        </div>
+                        <div class="xp change-pass">
+                            <a href="{% url 'password_change' %}">CHANGE PASSWORD</a>
+                        </div>
+                        <div class="xp" id="submit-btn">
+                            <input type="submit" value="SAVE DETAILS">
+                        </div>
+                    </form>
+                </div> 
+               
+            </div>
+            
+
+        </div>
+ </div>
+ {{ block.super }}
+ <script src="{% static 'users/js/edit.js' %}"></script>
+
+ {% endblock %}

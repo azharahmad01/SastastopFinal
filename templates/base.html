@@ -1,0 +1,361 @@
+{% load static %} 
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+
+    <link
+      rel="stylesheet"
+      href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
+    <!-- <link
+      rel="stylesheet"
+      href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}"
+    /> -->
+<!-- 
+    <link
+      rel="stylesheet"
+      href="{% static 'node_modules/bootstrap-social/bootstrap-social.css' %}"
+    />
+    fonts -->
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'lightslider/css/lightslider.css' %}"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    {% block styles %}
+     {% endblock %}
+
+    <title>Document</title>
+  </head>
+  <body>
+    
+
+    
+
+    <div class="fixed-nav">
+      <div class="my-nav">
+        <div class="logo">
+          <a style="color: white;" href="{% url 'home' %}">
+            <img src="{% static 'img/logo4.png' %}" />
+            <div class="logo-text">
+              SASTASTOP
+            </div>
+          </a>
+        </div>
+        <div class="navlinks-container" class="">
+          <ul class="nav-links1">
+            <li><a href="{% url 'products' %}">PRODUCTS</a></li>
+            <li><a href="{% url 'category-product' 'shirts' %}">SHIRTS</a></li>
+            <li><a href="{% url 'category-product' 'tshirts' %}">TSHIRTS</a></li>
+            <li><a href="{% url 'category-product' 'hoodies' %}">HOODIES</a></li>
+            <li>
+              <form method="GET" action="{% url 'products' %}" id="search-form">
+                <input  type="text" id="search" name="search" value="{{search_value}}" placeholder="Search for products.." autofocus="on">
+                <button  id="search-icon" type="button">
+                  <img  src="{% static 'img/search.png' %}">
+
+                </button>
+              </form>
+
+            </li>
+          </ul>
+          <ul class="nav-links2">
+            {% if user.is_authenticated %}
+            <li id="profile-link">
+              <a id="account" href="{% url 'profile' %}">PROFILE</a>
+              <div class="custom-dropdown d-flex flex-column">
+                <div class="dropdown-link"><a href="#">Your Orders</a></div>
+                <div class="dropdown-link"><a href="{% url 'wishlist_view' %}">Wishlist</a></div>
+                <div class="dropdown-link"><a href="{% url 'logout' %}">Log Out</a></div>
+                <div class="dropdown-link"><a href="#">Saved</a></div>
+              </div>
+            </li>
+            <!--<li><a href="{% url 'logout' %}">LOGOUT</a></li>-->
+            <li>
+              <a id="bag" href="{% url 'bagview' %}">
+                <span class="fa fa-shopping-bag"></span>
+                BAG
+
+                <span id="bag-count" style="color: white;">0</span></a
+              >
+            </li>
+            {% else %}
+            <li><a id="account" href="{% url 'account-registration' %}">LOGIN</a></li>
+            <li>
+              <a id="bag" href="{% url 'bagview' %}">
+                <span class="fa fa-shopping-bag"></span>
+                BAG
+
+                <span id="bag-count" style="color: white;">0</span></a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="nav-toggler">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </div>
+    </div>
+
+    
+    {% if messages %}
+
+      {% for message in messages %} 
+            <div class="general-alert-container">
+              <div class="row">
+                <div class="col-12">
+                  
+                     <span class="alert-content">
+                        {{message}}
+                        <button type="button" id="close-alert" >
+                         <span class="fa fa-times"></span>
+                        </button>
+                     </span>
+               
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+            
+         
+
+
+    
+
+    {% block content %} {% endblock %}
+    <div class="content">
+    </div>
+    <!--Footer-->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 col-sm-4 offset-2 offset-sm-1">
+            <span style="font-size: 18px; font-weight: 400;">ABOUT</span>
+            <ul style="font-size: 16px" class="list-unstyled mt-3">
+              <li>Home</li>
+              <li>About</li>
+              <li>Menu</li>
+              <li>Contact</li>
+              <li>Menu</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+          <div class="col-5 col-sm-4 offset-1 offset-sm-0">
+            <span style="font-size: 18px; font-weight: 400;">POLICY</span>
+            <ul style="font-size: 16px" class="list-unstyled mt-3">
+              <li>Home</li>
+              <li>About</li>
+              <li>Menu</li>
+              <li>Contact</li>
+              <li>Menu</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+          <div class="col-12 col-sm-3 align-self-center mt-5 mt-sm-0">
+            <div class="text-center">
+              <a
+                class="btn btn-social-icon btn-google"
+                href="http://google.com/+"
+                ><i
+                  style="font-size: 30px; color: white;"
+                  class="fa fa-google-plus fa-lg"
+                ></i
+              ></a>
+              <a
+                class="btn btn-social-icon btn-facebook"
+                href="http://www.facebook.com/profile.php?id="
+                ><i
+                  style="font-size: 30px; color: white;"
+                  class="fa fa-facebook fa-lg"
+                ></i
+              ></a>
+              <a
+                class="btn btn-social-icon btn-linkedin"
+                href="http://www.linkedin.com/in/"
+                ><i
+                  style="font-size: 30px; color: white;"
+                  class="fa fa-linkedin fa-lg"
+                ></i
+              ></a>
+              <a
+                class="btn btn-social-icon btn-twitter"
+                href="http://twitter.com/"
+                ><i
+                  style="font-size: 30px; color: white;"
+                  class="fa fa-twitter fa-lg"
+                ></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!--becoz slim version does not have ajax-->
+    <script src="{% static 'node_modules/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'lightslider/js/lightslider.js' %}"
+    ></script>
+   
+    <script>
+
+
+
+
+      //NAV JS
+      let navToggler = document.getElementsByClassName("nav-toggler")[0];
+      let navLinksContainer = document.getElementsByClassName(
+        "navlinks-container"
+      )[0];
+      let navLinks = document.querySelectorAll(".nav-links1 li");
+      navToggler.addEventListener("click", function () {
+        this.classList.toggle("toggle");
+        navLinksContainer.classList.toggle("nav-active");
+
+        navLinks.forEach((link, index) => {
+          if (link.style.animation) {
+            link.style.animation = ``;
+          } else {
+            link.style.animation = `navLinkFade 0.7s ease forwards `;
+          }
+        });
+      });
+      //NAV JS END
+
+
+      function fadeOutAlert(){
+
+          let alert = document.getElementsByClassName("general-alert-container")[0];
+          if(alert.style.animation){
+            alert.style.animation = '';
+          }
+          else{
+            alert.style.animation = `animateToTop 0.9s ease forwards`;
+          }
+      }
+      $("#close-alert").on("click",function(){
+          fadeOutAlert();
+      })
+
+      setTimeout(function(){  
+        
+        if($(".general-alert-container").css("opacity") == "1")
+        {
+          fadeOutAlert();
+        }
+        
+      },5000);
+
+      if (localStorage.getItem("cart") != null) {
+        let bagItems = JSON.parse(localStorage.getItem("cart"));
+        let count = 0;
+        for (item in bagItems) {
+          count++;
+        }
+        console.log(count);
+        $("#bag-count").css("display", "inline-block");
+        $("#bag-count").html(count);
+      }
+
+      //nav search animation
+      
+
+
+
+      $("#search-icon").on("click",function(){
+        if($("#search").css("display") == "block"){
+          //$("#search").css("display","none");
+          $("#search-form").submit();          
+          console.log("dvshd");
+        }
+        else{
+
+          let xmedia = window.matchMedia("(max-width:880px)");
+          widthSearch(xmedia);
+          xmedia.addListener(widthSearch);
+
+          function widthSearch(x){
+            if(x.matches){
+               $("#search").css("display","inline-block");
+               setTimeout(function(){
+                 $("#search").css("width","48vw");
+              },300);
+               console.log($("#search").css("display"));
+               $("#search").focus();
+               setTimeout(function(){
+                $("#search").css("padding-left","10px");
+              },500);
+            }
+            else{
+                  
+
+              let links = document.querySelectorAll(".nav-links1 li:not(:last-child)");
+              for(i=(links.length-1);i>=0;i--){
+                links[i].style.animation = `opacityFade 0.3s ease forwards ${1/(i+1)}s`;
+              }
+              $("#search").css("display","inline-block");
+               setTimeout(function(){
+                 $("#search").css("width","90%");
+              },300);
+               console.log($("#search").css("display"));
+               $("#search").focus();
+               setTimeout(function(){
+                $("#search").css("padding-left","10px");
+              },500);
+
+            }
+          }
+
+          
+
+
+
+        }
+      });
+
+
+
+
+       
+      
+    </script>
+    {% block javascript %} {% endblock javascript %}
+  </body>
+</html>

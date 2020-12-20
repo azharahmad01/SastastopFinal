@@ -1,0 +1,524 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'product/css/placeorder.css' %}">
+
+<style>
+  @media only screen and (max-width: 500px){
+  .profile-breadcrumb{
+    font-size: 16px;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="background-nav">
+  </div>
+
+
+  <div class="container-fluid bag-list mt-0">
+      <div class="row justify-content-md-center mt-0 py-4 px-0 px-md-3">
+
+        <div class="col-12  px-lg-5 py-0">
+          <div class="row mx-0 my-0 px-lg-0">
+            <div class="col-12 p-0">
+                <nav class=" m-0" aria-labelledby="breadcrumb">
+                  <ol style="background-color: transparent;letter-spacing: 0.3em" class="breadcrumb profile-breadcrumb">
+                    <li class="breadcrumb-item"><a  href="{% url 'bagview' %}">BAG</a></li>
+                    <li class="breadcrumb-item active"><a href="#">SHIPPING</a></li>
+                    <li class="breadcrumb-item"><a  href="#">CHECKOUT</a></li>
+                  </ol>
+                </nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mt-0 pt-0  product-container col-lg-7">
+          <form method="POST" id="select-address-form" class="select-address pt-0" action="{% url 'create-order' %}">
+            {% csrf_token %}
+            <div class="row select-address-heading">
+              <div class="col-12">
+                SELECT AN ADDRESS
+              </div>
+            </div>
+              
+
+              {% for address in user.addresses.all %}
+
+
+              <div class="row address-row">
+                <div class="input-col">
+                  <input type="radio" class="address-radio" name="address_id" value="{{address.id}}"
+                  {% if address == user.addresses.all.first %}
+                  checked 
+                  {% endif %} />
+                </div>
+                
+                <div class="text-col">
+                  <div class="address-name">
+                    {{address.name}} {{address.phone}}
+                  </div>
+                  <div class="address-text">
+                    {{address.address1}}
+                    {{address.address2}}
+                  </div>
+                </div>
+               
+                
+              </div>
+            {% endfor %}
+            <input type="hidden" id="bag-details" name="bag">
+            <input type="hidden" id="coupon" name="coupon">
+          </form>
+          <div class="add-address">
+            <div id="add-address-nav" class="row add-address-heading">
+              <div class="col-12">
+                <img src="{% static 'img/plus.png' %}" alt="" />
+                ADD A NEW ADDRESS
+              </div>
+            </div>
+            <div class="row new-address-row">
+              
+              <div class="address-form">
+                <div class="form-header">
+                  ADD A NEW ADDRESS
+                </div>
+                <form method="POST" id="address-form">
+                  {% csrf_token %}
+                  <div class="form-content">
+                    <div class="input-group">
+                      <input type="text" placeholder="Name" id="name" required="" />
+                      <input type="number" placeholder="10-digit mobile number" id="phone" required="" />
+                    </div>
+                    <!--<div class="input-group">
+                      <input type="number" placeholder="Pincode" id="pincode" />
+                      
+                    </div>-->
+                    <div class="input-group">
+                      <textarea
+                        name=""
+                    
+                        cols="30"
+                        rows="2"
+                        placeholder="Address1"
+                        id="address1" required
+                      ></textarea>
+                    </div>
+                    <div class="input-group">
+                      <textarea
+                        name=""
+                      
+                        cols="30"
+                        rows="2"
+                        placeholder="Address2"
+                        id="address2" required
+                      ></textarea>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" placeholder="City/District/Town" id="city" required />
+                      <input type="number" placeholder="Pincode" id="postcode" required />
+                    </div>
+
+                    <div class="input-group">
+                      <button type="submit" class="address-submit">ADD</button>
+
+                      <button type="button" class="address-cancel">
+                        CANCEL
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 mt-4 mx-0 mt-lg-0">
+          <div class="row m-0 no-gutters">
+            <div class="col-12 px-0 px-lg-3 order-column">
+              <div class="card px-0">
+                <div class="card-header">
+                  <span style="font-size: 16px; font-weight: 400;"
+                    >PRICING DETAILS</span
+                  >
+                  <br />
+                </div>
+                <div class="row bag-coupon-card card-body">
+                  <div class="col-12 d-none d-md-flex">
+                    <span style="font-size: 14px; color: #535766;"
+                      >PRICE DETAILS</span
+                    >
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Bag Total</span>
+                    <span class="float-right" id="totalInit">0</span>
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Bag Discount</span>
+                    <span style="color: #04a076;" class="float-right"
+                      id="discount">0</span
+                    >
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Coupon Discount</span>
+                    <span class="float-right" id="couponDiscount">0</span>
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Order Total</span>
+                    <span class="float-right" id="orderTotal">0</span>
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Delivery Charges</span>
+                    <span class="float-right"
+                      id="deliveryCharges">0</span
+                    >
+                  </div>
+                  <hr />
+                  <hr />
+                  <div
+                    style="font-size: 18px; font-weight: 400;"
+                    class="col-12"
+                  >
+                    <span>Total</span>
+                    <span class="float-right" id="total">0</span>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn w-100 coupon-btn" id="place-order" type="button">
+                      PLACE ORDER
+                    </button> 
+                      
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--ORDER SUMMARY-->
+
+            <div class="col-12 px-0 mt-3 px-lg-3">
+              <div class="card px-0">
+                <div class="card-header">
+                  <span style="font-size: 16px; font-weight: 400;"
+                    >ORDER SUMMARY</span
+                  >
+                  <br />
+                </div>
+                <div id="order-summary" class="row bag-coupon-card card-body">
+                 
+                </div>
+              </div>
+            </div>
+
+            <!--END-->
+
+      
+
+
+          </div>
+        </div>
+
+
+        
+
+
+
+      </div>
+    </div>
+
+
+<!--
+
+  <div class="container mt-3 mb-5">
+      
+      <div class="row my-2">
+        <div class="col-12">
+          <form method="POST" action="{% url 'create-order' %}">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mv-4">Select the address</legend>
+            {% for address in user.addresses.all %}
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="address_id" value={{address.id}}>
+                <label class="form-check-label">{{address.address1}} {{address.address2}} {{address.city}}-{{address.postcode}}</label>
+              </div>
+            {% endfor %}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn" style="background-color: black;color:white" type="submit">ORDER</button>
+          </div>
+        </form>
+    
+        </div>
+       </div>
+  </div>
+-->
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    var addAddressNav = document.getElementById("add-address-nav");
+
+      addAddressNav.addEventListener("click", function () {
+        console.log("hfh");
+        var newAddressRow = document.getElementsByClassName(
+          "new-address-row"
+        )[0];
+        newAddressRow.style.display = "flex";
+      
+        if (newAddressRow.style.height != "0px") {
+          console.log("gch");
+          newAddressRow.style.height = "0px";
+          // newAddressRow.style.width = 0;
+        } else {
+
+          newAddressRow.style.height = newAddressRow.scrollHeight + "px";
+          $('html,body').animate({
+            scrollTop: $(newAddressRow).offset().top/1.3},
+            'slow');
+          }
+
+      });
+
+      var addressRows = document.getElementsByClassName("address-row");
+      for(var i=0;i<addressRows.length;i++) {
+        addressRows[i].addEventListener("click", function(){
+          for(var j=0;j<addressRows.length;j++){
+            addressRows[j].style.backgroundColor = "white";
+          }
+
+          var currentInput = this.getElementsByTagName("input");
+          console.log(currentInput)
+          $(currentInput).prop("checked",true);
+          this.style.backgroundColor = "#e5e7eb";
+        })
+      }
+
+      /*csrf _token due to ajax post form*/
+      function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = cookies[i].trim();
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+      var csrftoken = getCookie('csrftoken');
+
+      function csrfSafeMethod(method) {
+          // these HTTP methods do not require CSRF protection
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+      $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+              if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+              }
+          }
+      });
+      /* csrf end */
+
+      $("#place-order").on("click",function(){
+    
+        let cart = localStorage.getItem('cart');
+        console.log(cart);
+        $("#bag-details").val(cart);
+        let coupon = localStorage.getItem('coupon');
+        $("#coupon").val(coupon);
+        localStorage.removeItem('cart');
+        localStorage.removeItem('coupon');
+        localStorage.removeItem('couponDiscount');
+        localStorage.removeItem('shippingCharge');
+        $("#select-address-form").submit();
+
+      });
+
+      $("#address-form").on("submit",function(e){
+        e.preventDefault();
+        console.log("submitted");
+
+        $.ajax({
+          url:"{% url 'create-address-ajax' %}",
+          type: "POST",
+          data: {"name": $("#name").val(),
+          "phone": $("#phone").val(),
+          "address1": $("#address1").val(),
+          "address2": $("#address2").val(),
+          "city": $("#city").val(),
+          "postcode": $("#postcode").val()
+          },
+          success:function(response){
+            console.log(response["address"]);
+            let address = JSON.parse(response["address"]);
+            let addressContainer = document.getElementsByClassName("select-address")[0];
+            console.log(address.address_id)
+            $(addressContainer).append(`
+              <div class="row address-row">
+                <div class="input-col">
+                  <input type="radio" class="address-radio" name="address_id" value="${address.address_id}" />
+                </div>
+                
+                <div class="text-col">
+                  <div class="address-name">
+                     ${address.name} ${address.phone}
+                  </div>
+                  <div class="address-text">
+                    ${address.address1}
+                    ${address.address2}
+                  </div>
+                </div>
+               
+                
+              </div>
+              `)
+            var activeAddress = document.querySelector(".address-row:last-child");
+            console.log(activeAddress);
+            let addressRows = document.getElementsByClassName("address-row");
+           for(var j=0;j<addressRows.length;j++){
+              addressRows[j].style.backgroundColor = "white";
+            }
+
+            let currentInput = activeAddress.getElementsByClassName("address-radio")[0];
+            console.log(currentInput);
+            $(currentInput).prop("checked",true);
+            activeAddress.style.backgroundColor = "#e5e7eb";
+            
+
+          },
+          error:function(){
+            console.log(response);
+          }
+        });
+      })
+
+
+
+      let deliveryCharges = JSON.parse(localStorage.getItem('shippingCharge'));
+      let couponDiscount = 0;
+      let totalInit = 0;
+      let discount_price = 0;
+      let discount = 0;
+      let orderTotal;
+      let total;
+
+       window.addEventListener("load",function(){
+
+
+
+        if(localStorage.getItem('cart')!=null) {
+          let bagItems = JSON.parse(localStorage.getItem('cart'));
+          let count = 0;
+          for(item in bagItems){
+            count++;
+          }
+          console.log(bagItems);  
+
+
+          let orderSummaryContainer = document.getElementById("order-summary");
+
+          let content = ``;
+        
+
+          let price,required;
+
+          for(item in bagItems){
+              price = bagItems[item].product_info.price;
+              required = bagItems[item].wanted_quantity;
+              totalInit += price*required;
+              discount_price += (bagItems[item].product_info.discount_price)*required;
+
+              content += `<div class="col-12 col-md-6 col-lg-12 py-3  summary-column">
+
+                    <div class="media">
+                      <div class="row no-gutters w-100">
+                           <div class="col-3">
+                         <img class="img-fluid" src="${bagItems[item].image1}">
+                      </div>
+                      <div class="col-9 px-2">
+                          <div class="media-body">
+                          
+                              <span style="font-size: 20px; font-weight: 600;"
+                            >Brand Name</span
+                          >
+                          <span
+                            style="font-size: 20px; font-weight: 600;"
+                            class="float-right"
+                            >${bagItems[item].product_info.price}</span
+                          >
+                          
+                          <br />
+                          <span style="font-size: 16px;">
+                            ${bagItems[item].product_info.name}
+                          </span>
+                          <br />
+                          <span
+                            style="
+                              font-weight: 300;
+                              color: rgb(70, 64, 64);
+                              font-size: 14px;
+                            "
+                          >
+                            Color : ${bagItems[item].color}<br />
+                            Size : ${bagItems[item].size}<br>
+                            Quantity: ${bagItems[item].wanted_quantity}
+                          </span>
+                            
+                         </div>
+                      </div>
+
+                      </div>
+                    </div>
+                  
+                </div>
+`
+
+
+            console.log(item);
+          }
+
+
+
+          orderSummaryContainer.innerHTML = content;
+          //$("#bag-total").html(total);
+
+          discount = totalInit - discount_price;
+          
+
+          if(localStorage.getItem('couponDiscount')!=null){
+            couponDiscount = JSON.parse(localStorage.getItem('couponDiscount'));
+          }
+
+          orderTotal = discount_price - couponDiscount;
+
+          
+
+          total = orderTotal + deliveryCharges;
+      
+          $("#totalInit").html(totalInit);
+          $("#discount").html(discount);
+          $("#couponDiscount").html(couponDiscount);
+          $("#orderTotal").html(orderTotal);
+          $("#deliveryCharges").html(deliveryCharges);
+          $("#total").html(total);
+
+        }
+        else{
+
+        }
+
+      });
+</script>
+
+
+{% endblock %}
+

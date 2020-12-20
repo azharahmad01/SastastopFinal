@@ -1,0 +1,1168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+ 
+ 
+  <link rel="stylesheet" type="text/css" href="{% static 'product/css/product.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'product/css/product_detail.css' %}">
+
+
+  <style>
+ 
+
+</style>
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<!--alert-->
+<div class="alert-container">
+  <div class="row">
+    <div class="col-12">
+      <span class="alert-content">
+        
+      Already added to Bag!
+      </span>
+    </div>
+  </div>
+</div>
+
+<!--end-->
+<div class="background-nav">
+  </div>
+
+   <!-- Add to Wishlist  -->
+  <div class="wishlist-container d-none d-xl-block">
+    <a href="{% url 'add_to_wishlist' product.id %}"><img src="{% static 'img/plus.png' %}">
+      W<br>I<br>S<br>H<br>L<br>I<br>S<br>T
+    </a>
+
+  </div>
+
+
+
+
+	<div style="background: white;"  class="custom-container mt-3">
+      <div class="row">
+        <div class="fixedContainerColumn col-12 col-md-6 px-5 px-md-3 ">
+          <div id="positionFixedContainer">
+            <div class="product-image-container">
+            {% for variation in variations %}
+             <div class="row no-gutters image-slides">
+                <div class="small-img-column col-3 col-lg-2 col-md-12 d-flex justify-content-center justify-content-lg-start flex-column flex-md-row flex-lg-column mt-lg-5 pr-2">
+                  {% if variation.image1.url != '/media/default-product.jpg' %}
+                      <img id="current-image" width="90px" height="100px" src="{{variation.image1.url}}" onclick="changeimage(this)" alt="{{variation.id}}" >
+                  {% endif %}
+                  {% if variation.image2.url != '/media/default-product.jpg' %}
+                      <img width="90px" height="100px" src="{{variation.image2.url}}" onclick="changeimage(this)" alt="{{variation.id}}">
+                  {% endif %}       
+                  {% if variation.image3.url != '/media/default-product.jpg'  %}
+                      <img width="90px" height="100px" src="{{variation.image3.url}}" onclick="changeimage(this)" alt="{{variation.id}}">
+                  {% endif %}
+                  {% if variation.image4.url  != '/media/default-product.jpg' %}
+                      <img width="90px" height="100px" src="{{variation.image4.url}}" onclick="changeimage(this)" alt="{{variation.id}}">
+                  {% endif %}
+                  
+                </div>
+                <div style="border:2px solid black" class="col-9 col-lg-10 img-column col-md-12">
+                  <img class="main-img"  src="{{variation.image1.url}}"  alt=""   />
+                </div>
+              </div>
+            {% endfor %}
+
+            <div class="row product-lens">
+              <div id="lens" class="">
+                
+              </div>
+            </div>
+
+            
+            </div>
+          </div>
+            
+          
+        </div>
+          
+        <div id="info-column" class="col-12 col-xl-5 col-md-6 mt-3 px-5 px-md-2 pr-md-2  mt-md-0 ">
+          <div class="row">
+            <div class="col-12">
+              <span style="font-size: 22px; font-family: 'Poppins', sans-serif;"
+                >{{product.name}}
+              </span>
+              <br />
+              <del
+                ><span style="font-size: 15px; color: grey; margin-right: 5px;"
+                  >&#x20b9; 599</span
+                ></del
+              >
+              <span class="font-weight-bold mr-1" style="font-size: 24px">{{product.price}}</span>
+              <span class="font-weight-bold mr-3">34% off</span>
+              <span class="fa fa-truck"></span>
+              <span style="font-size: 12px;">FREE SHIPPING</span>
+            </div>
+            
+                <form style="width:100%">
+              
+              <div class="col-12 mt-3">
+                <span style="font-size: 15px;font-weight: 600;letter-spacing: 0.1em;">SIZE :</span>
+                <br />
+                <div class="mycustom-select">
+                  <select name="size" id="size">
+                    {% for key,value in size.items %}
+                        <option value="{{key}}">{{value}}</option>
+                    {% endfor %}
+                </select>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-10 mt-3">
+                <input type="text" class="d-none" id="color" name="color" >
+                <span style="font-size: 15px;font-weight: 600;letter-spacing: 0.1em;">COLOR : </span><span id="color-text">
+                  {% for variation in variations %}
+                    <span class="color-text-slides">
+                  {{variation.color}}
+                  </span>
+                  {% endfor %}
+                  
+                </span>
+                <div id="product-color-options" class="row no-gutters mt-2">
+
+                  {% for variation in variations %}
+                  <div class="col-2">
+                    <img class="img-indicators" onclick="showSlideMain(this)" 
+                    onmouseenter="changeMainImg(this)" onmouseleave="getbackMainImg(this)" width="60px" height="60px" src="{{variation.image1.url}}">
+                  </div>
+                  {% endfor %}
+                </div>       
+              </div>
+           
+              <div class="col-12 mt-3">
+                <div id="addedtobag" style="color:#800000;font-weight: 600;font-size: 18px;padding-bottom: 5px"></div>
+              
+                <button id="addtobag-button" type="button" class="btn bag-button">ADD TO BAG</button>
+                <br />
+                <span class="fa fa-plus"></span>
+                <span style="font-size: 14px;">ADD TO WISH LIST</span>
+              </div>
+          </form>
+            <div class="col-12 mt-3" style="font-size: 16px;">
+              Winter is naughty in many layers, so keep it out of your system with this colourful 100 % cotton hooded sweatshirts from the High Hill.
+            </div>
+            <div id="instock" style="color:green; font-weight: 600;font-size: 18px;" class="col-12 mt-2 pt-2">
+            </div>
+        
+            <div class="col-12 mt-4">
+              <span class="font-weight-bold mr-1">Delivery Availability :</span>
+              <span class="font-weight-light mr-1" style="font-size: 15px;"
+                >Enter Pincode</span
+              ><br />
+              <div class="form-group d-flex">
+                <input type="text" class="form-control location-input" id="pincode" />
+                <button type="submit" onclick="checkDelivery()" class="btn location-button">
+                  CHECK LOCATIONS
+                </button>
+              </div>
+              <div id="deliverText">
+                
+              </div>
+
+              <!--size and info-->
+              <div class="col-md-12 info-onlaptop pt-3">
+                <div class="row ">
+                  <div class="col-12 info-header px-0 py-3">
+                    SIZE INFO
+                  </div>
+                  <div class="col-12 p-0">
+                    
+                    <ul  style="list-style-position: inside; ">
+                      <li>True to size.</li>
+                      <li>
+                        Considered a Regular fit; cut with some room through the chest
+                        and body.
+                      </li>
+                    </ul>
+                  </div>
+                   <div class="col-12 info-header pl-0 py-3">
+                    DETAILS AND CARE
+                  </div>
+                  <div class="col-12 p-0">
+                    
+                    
+                    <ul style="list-style-position: inside; ">
+                      <li>31" length; 46" chest (size Medium)</li>
+                      <li>Front button closure</li>
+                      <li>Button-down collar</li>
+                      <li>Long sleeves with adjustable button cuffs</li>
+                      <li>Chest button-patch pocket</li>
+                      <li>95% cotton, 5% spandex</li>
+                      <li>Machine wash, tumble dry</li>
+                      <li>Imported</li>
+                    </ul>
+                  </div>
+                   <div class="col-12 info-header pl-0 py-3">
+                    PRODUCT DESCRIPTION
+                  </div>
+                  <div class="col-12 p-0 pb-3">
+                    
+                    
+                    {{product.description}}
+                  </div>
+
+                  <div class="col-12 product-code pl-0 py-3">
+                    
+                    
+                    <ul style="list-style-position: inside;list-style-type: none ">
+                      <li>Product Code: <span style="font-weight: 550">1997244</span></li>
+                      <li>Country of Origin:<br><span style="font-weight: 550">INDIA</span></li>
+                     
+                    </ul>
+                  </div>
+                </div>
+               </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid info-notonlaptop mt-1 mt-md-5 p-5">
+      <div class="row justify-content-center py-0">
+        <div class="col-12 info-header pl-0 py-3 ">
+                    SIZE INFO
+                  </div>
+                  <div class="col-12 p-0">
+                    
+                    <ul  style="list-style-position: inside; ">
+                      <li>True to size.</li>
+                      <li>
+                        Considered a Regular fit; cut with some room through the chest
+                        and body.
+                      </li>
+                    </ul>
+                  </div>
+                   <div class="col-12 info-header pl-0 py-3">
+                    DETAILS AND CARE
+                  </div>
+                  <div class="col-12 p-0">
+                    
+                    
+                    <ul style="list-style-position: inside; ">
+                      <li>31" length; 46" chest (size Medium)</li>
+                      <li>Front button closure</li>
+                      <li>Button-down collar</li>
+                      <li>Long sleeves with adjustable button cuffs</li>
+                      <li>Chest button-patch pocket</li>
+                      <li>95% cotton, 5% spandex</li>
+                      <li>Machine wash, tumble dry</li>
+                      <li>Imported</li>
+                    </ul>
+                  </div>
+                  <div class="col-12 info-header pl-0 py-3">
+                    PRODUCT DESCRIPTION
+                  </div>
+                  <div class="col-12 p-0 pb-3">
+                    
+                    
+                    {{product.description}}
+                  </div>
+
+                  <div class="col-12 product-code pl-0 py-3">
+                    
+                    
+                    <ul style="list-style-position: inside;list-style-type: none ">
+                      <li>Product Code: <span style="font-weight: 550">1997244</span></li>
+                      <li>Country of Origin:<br><span style="font-weight: 550">INDIA</span></li>
+                     
+                    </ul>
+                  </div>
+      </div>
+    </div>
+
+    <!--REVEIWS CAROUSEL-->
+    <div style="background-color: white;" class="slider-container mb-5 mt-0 pt-0 pt-md-5">
+      <div class="row slider-header">
+        <div class="col-12 text-center py-3">
+          CUSTOMER REVEIWS <span style="font-size:44px;margin-left: 10px;">3.2</span><span style="font-size:33px;margin-left: 5px" class="fa fa-star checked"></span><br />
+
+          <div style="font-size: 19px;">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star unchecked"></span>
+            <span class="fa fa-star unchecked"></span>
+          </div>
+        </div>
+        
+        <div class="reveiw-controls d-none d-md-block">
+          <a  class="reveiw-prev"><img height="70px" width="70px" src="{% static 'img/prevReveiw.png' %}"></a>
+          <a class="reveiw-next"><img height="70px" width="70px" src="{% static 'img/nextReveiw.png' %}"></a>
+        </div>
+ 
+        
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ul id="reveiws" class="cs-hidden">
+            <li class="item-a">
+              <div class="slider-slide">
+                <div class="slide-header">
+                  Bonafide Language Learning
+                  <img class="reviews-img" src="{% static 'img/profile1.jpg' %}" alt="" />
+                  <div style="font-size: 13px;margin-top: 5px;">
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star unchecked"></span>
+                      <span class="fa fa-star unchecked"></span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                  I learned more from this app than I ever did in college level
+                  Spanish one. When I went to college level Spanish two, my
+                  professor told us about this program and I have really learned.
+                  
+                </div>
+              </div>
+            </li>
+            <li class="item-b">
+              <div class="slider-slide">
+                <div class="slide-header">
+                  Bonafide Language Learning
+                  <img class="reviews-img" src="{% static 'img/profile2.jpg' %}" alt="" />
+                   <div style="font-size: 13px;margin-top: 5px;">
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star unchecked"></span>
+                      <span class="fa fa-star unchecked"></span>
+                      <span class="fa fa-star unchecked"></span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                  I learned more from this app than I ever did in college level
+                  Spanish one. When I went to college level Spanish two, my
+                  professor told us about this program and I have really learned.
+                </div>
+              </div>
+            </li>
+            <li class="item-c">
+              <div class="slider-slide">
+                <div class="slide-header">
+                  Bonafide Language Learning
+                  <img class="reviews-img" src="{% static 'img/profile3.jpg' %}" alt="" />
+                   <div style="font-size: 13px;margin-top: 5px;">
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star unchecked"></span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                  I learned more from this app than I ever did in college level
+                  Spanish one. When I went to college level Spanish two, my
+                  professor told us about this program .
+                </div>
+              </div>
+            </li>
+            <li class="item-d">
+              <div class="slider-slide">
+                <div class="slide-header">
+                  Bonafide Language Learning
+                  <img class="reviews-img" src="{% static 'img/profile4.jpg' %}" alt="" />
+                   <div style="font-size: 13px;margin-top: 5px;">
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star unchecked"></span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                  I learned more from this app than I ever did in college level.
+                </div>
+              </div>
+            </li>
+            <li class="item-e">
+              <div class="slider-slide">
+                <div class="slide-header">
+                  Bonafide Language Learning
+                  <img class="reviews-img" src="{% static 'img/profile1.jpg' %}" alt="" />
+                   <div style="font-size: 13px;margin-top: 5px;">
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star checked-user"></span>
+                      <span class="fa fa-star unchecked"></span>
+                      <span class="fa fa-star unchecked"></span>
+                      <span class="fa fa-star unchecked"></span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                  I learned more from this app than I ever did in college level.
+                  
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--END-->
+
+
+     <!--PRODUCTS CAROUSEL-->
+    <div class="slider-container">
+      <div class="row slider-product-header">
+        <div class="col-12  py-3">
+          RECOMMENDED PRODUCTS<br />
+        </div>
+      </div>
+      <div class="row slides">
+        <div class="col-12">
+          <div class="slideControlsRecommended slideControls">
+           <a style="display:inline-block;background-color: black;" class="slidePrev secondcarousel-buttons ">
+              <span class="carousel-control-prev-icon " ></span>
+        
+             </a>
+            <a style="display: inline-block;" class="slideNext secondcarousel-buttons">
+              <span class="carousel-control-next-icon"></span>
+              
+            </a>
+          </div> 
+          <ul id="products-recommended" class="cs-hidden">
+            {% for product in recommended %}
+              <li class="item-a">
+                <div class="product-slide ">
+                        <div class="row">
+                          <div class="col-12">
+                            <img
+                              src="{{product.variations.first.image1.url}}"
+                              class=""
+                              height="250px"
+                              width="200px"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 pl-4 py-2">
+                            <a style="display:inline-block;color:black;text-decoration: none;line-height: 1.3em" href="#">
+                           {{product.name}}</a><br />
+                            <span style="font-weight: 600;font-size:18px;">{{product.price}}</span>
+                            <del><span style="color:grey;font-size:14px;margin-left:3">Rs 2399  </span></del>
+                            <span style="color:#EC3E6D;font-size:14px;"> (40% OFF)</span>
+                          </div>
+                        </div>
+                </div>
+            </li>
+            {% endfor %}
+            
+           
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--END-->
+     <!--PRODUCTS CAROUSEL-->
+    <div class="slider-container mt-5 mb-5">
+      <div class="row slider-product-header">
+        <div class="col-12  py-3">
+          CUSTOMERS ALSO LIKED<br />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+           <div class="slideControlsLiked slideControls">
+            <a style="display:inline-block;background-color: black;" class="slidePrev secondcarousel-buttons ">
+              <span class="carousel-control-prev-icon " ></span>
+        
+             </a>
+            <a style="display: inline-block;" class="slideNext secondcarousel-buttons">
+              <span class="carousel-control-next-icon"></span>
+              
+            </a>
+          </div> 
+          
+          <ul id="products-liked" class="cs-hidden">
+            {% for product in recommended %}
+              <li class="item-a">
+                <div class="product-slide ">
+                        <div class="row">
+                          <div class="col-12">
+                            <img
+                              src="{{product.variations.first.image1.url}}"
+                              class=""
+                              height="250px"
+                              width="200px"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 pl-4 py-2">
+                            <a style="display:inline-block;color:black;text-decoration: none;line-height: 1.3em" href="#">
+                           {{product.name}}</a><br />
+                            <span style="font-weight: 600;font-size:18px;">{{product.price}}</span>
+                            <del><span style="color:grey;font-size:14px;margin-left:3">Rs 2399  </span></del>
+                            <span style="color:#EC3E6D;font-size:14px;"> (40% OFF)</span>
+                          </div>
+                        </div>
+                </div>
+            </li>
+            {% endfor %}
+            
+           
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--END-->
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+
+<script>
+  
+$(document).ready(function(){
+
+
+
+
+        //FOR FIXED IMAGE CONTAINER
+       
+        let fixedContainerColumn = document.getElementById("positionFixedContainer");
+        let heightContainerColumn = fixedContainerColumn.offsetHeight;
+        let topContainerColumn = fixedContainerColumn.offsetTop;
+       
+        let sumNeeded = heightContainerColumn + topContainerColumn;
+        let aesehi = document.getElementById("info-column");
+       
+        let distanceFixed = aesehi.offsetTop + aesehi.offsetHeight;
+        let sliderContainer2 = document.getElementsByClassName("slider-container")[0];
+        function fixAndUnfix(x){
+          if(x.matches){
+             $(window).scroll(function(){
+             
+              let wishlistContainer = document.getElementsByClassName("wishlist-container")[0];
+              let distancefromTop = $(sliderContainer2).offset().top - $(this).scrollTop();
+                if(distancefromTop < sumNeeded){
+                  $("#positionFixedContainer").css("position","absolute");
+                 
+                  $("#positionFixedContainer").css("bottom","0%");
+                  
+
+                  wishlistContainer.style.transform = `translateX(100%)`;          
+                }
+                else{
+                  $("#positionFixedContainer").css("position","fixed");
+                  $("#positionFixedContainer").css("bottom","inherit");
+                  wishlistContainer.style.transform = ``; 
+                  
+                  
+                }
+              });
+          }
+        }
+        var laptopmedia = window.matchMedia("(min-width : 769px) and (max-height: 1024px) and (min-height: 700px)");
+        fixAndUnfix(laptopmedia);
+        laptopmedia.addListener(fixAndUnfix);
+        //FOR REVEIWS CAROUSEL
+        
+       
+        var sliderReveiws = $("#reveiws").lightSlider({
+          autoWidth: true,
+          controls:false,
+          loop: true,
+          pager:false,
+          
+          onSliderLoad: function () {
+            $("#autoWidth").removeClass("cS-hidden");
+          }
+        });
+        $('.reveiw-controls .reveiw-prev').click(function() {
+            sliderReveiws.goToPrevSlide();
+        });
+
+        $('.reveiw-controls .reveiw-next').click(function() {
+            sliderReveiws.goToNextSlide();
+        });
+
+        var sliderProducts = $("#products-recommended").lightSlider({
+          autoWidth: true,
+          controls:false,
+          loop: true,
+          pager:false,
+          slideEndAnimation:true,
+          onSliderLoad: function () {
+            $("#autoWidth").removeClass("cS-hidden");
+          }
+        });
+        $('.slideControlsRecommended .slidePrev').click(function() {
+            sliderProducts.goToPrevSlide();
+        });
+
+        $('.slideControlsRecommended .slideNext').click(function() {
+            sliderProducts.goToNextSlide();
+        });
+
+        var sliderLiked = $("#products-liked").lightSlider({
+          autoWidth: true,
+          controls:false,
+          loop: true,
+          pager:false,
+          onSliderLoad: function () {
+            $("#autoWidth").removeClass("cS-hidden");
+          }
+        });
+        $('.slideControlsLiked .slidePrev').click(function() {
+            sliderLiked.goToPrevSlide();
+        });
+
+        $('.slideControlsLiked .slideNext').click(function() {
+            sliderLiked.goToNextSlide();
+        });
+
+
+ 
+      //getting the localStorage cart
+
+          if(localStorage.getItem('cart') == null){
+            cart = {};
+          }
+          else{
+            cart = JSON.parse(localStorage.getItem('cart'));
+          }
+          $("#addtobag-button").click(function(){
+
+            var size = $("#size").children("option:selected").val();
+            var color = $("#color").val().trim();
+           
+            $.ajax({
+              type: 'GET',
+              url: "{% url 'get-product-detail' product.id %}",
+              data: {"size":size,"color":color},
+              success: function(response){
+
+                if(response["valid"]){
+                  let product_detail = response["product_detail"];
+                  let product_info = JSON.parse(response["product_info"]);
+                  product_detail["wanted_quantity"] = 1;
+                 
+                  product_detail.product_info = product_info;
+                 
+                  if(cart[product_detail.id] == undefined){
+                    cart[product_detail.id] = product_detail;
+                
+                  }
+                  else{
+                    //alertt
+                     let AlertContainer = document.getElementsByClassName("alert-container")[0];
+                     
+                      AlertContainer.style.display = "block";
+                     
+                      AlertContainer.style.animation = `animateBottom 1s forwards`;
+                      setTimeout(function(){
+                           
+                           AlertContainer.style.animation = `animateToBottom 2s forwards`;
+
+                        },4000);
+                      setTimeout(function(){
+                             
+                        AlertContainer.style.animation = ``;
+                         
+                       AlertContainer.style.display = "none";
+                        },5000);
+                  }
+                  let count = 0;
+                  for(item in cart){
+                    count++;
+                  }
+                  $("#bag-count").css("display","inline-block");
+                  $("#bag-count").html(count);
+                  localStorage.setItem('cart',JSON.stringify(cart));
+                
+                  //("#addedtobag").html("Already added to Bag!!");
+                }
+                else{
+                  //$("#hiddenbag-button").trigger("click");
+                }
+
+              },
+              error: function(response){
+                console.log(response)
+              }
+            });
+
+          });
+
+            var size = $("#size").children("option:selected").val();
+            var color = $("#color").val().trim();
+            $.ajax({
+              type: 'GET',
+              url: "{% url 'presentinstock' product.id %}",
+              data: {"size":size,"color":color},
+              success: function(response){
+
+                if(response["valid"]){
+                  $("#instock").html("In Stock");
+                  $("#addtobag-button").prop("disabled",false)
+                }
+                else {
+                  console.log(response["valid"]);
+                   $("#instock").html("Not in Stock");
+                   $("#addtobag-button").prop("disabled",true)
+                }
+
+              },
+              error: function(response){
+                console.log(response)
+              }
+            });
+
+         
+
+         function checkInStock(size,color){
+              $.ajax({
+              type: 'GET',
+              url: "{% url 'presentinstock' product.id %}",
+              data: {"size":size,"color":color},
+              success: function(response){
+
+                if(response["valid"]){
+                  $("#instock").html("In Stock");
+                  $("#addtobag-button").prop("disabled",false)
+                }
+                else {
+                  console.log(response["valid"]);
+                   $("#instock").html("Not in Stock");
+                   $("#addtobag-button").prop("disabled",true)
+                }
+
+              },
+              error: function(response){
+                console.log(response)
+              }
+            });
+         }
+
+         //checking whether in stock and changing disable button and displaying in stock
+         $("#size").on("change",function(){
+
+            var size = $(this).children("option:selected").val();
+            var color = $("#color").val().trim();
+            checkInStock(size,color);
+          });
+
+         $("#color").on("change",function(){
+
+            var color = $(this).val().trim(); 
+            var size = $("#size").children("option:selected").val()
+            checkInStock(size,color);
+
+          });
+
+         
+
+         //Custom Select
+
+        var x, i, j, l, ll, selElmnt, a, b, c;
+        /*look for any elements with the class "custom-select":*/
+        x = document.getElementsByClassName("mycustom-select");
+        l = x.length;
+        for (i = 0; i < l; i++) {
+          selElmnt = x[i].getElementsByTagName("select")[0];
+          ll = selElmnt.length;
+          /*for each element, create a new DIV that will act as the selected item:*/
+          a = document.createElement("DIV");
+          a.setAttribute("class", "select-selected");
+          a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+          x[i].appendChild(a);
+          /*for each element, create a new DIV that will contain the option list:*/
+          b = document.createElement("DIV");
+          b.setAttribute("class", "select-items select-hide");
+          for (j = 0; j < ll; j++) {
+            /*for each option in the original select element,
+            create a new DIV that will act as an option item:*/
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function(e) {
+                /*when an item is clicked, update the original select box,
+                and the selected item:*/
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                  if (s.options[i].innerHTML == this.innerHTML) {
+                    s.selectedIndex = i;
+                    $(s).trigger("change");
+                    h.innerHTML = this.innerHTML;
+                    y = this.parentNode.getElementsByClassName("same-as-selected");
+                    yl = y.length;
+                    for (k = 0; k < yl; k++) {
+                      y[k].removeAttribute("class");
+                    }
+                    this.setAttribute("class", "same-as-selected");
+                    break;
+                  }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+          }
+          x[i].appendChild(b);
+          a.addEventListener("click", function(e) {
+              /*when the select box is clicked, close any other select boxes,
+              and open/close the current select box:*/
+              e.stopPropagation();
+              closeAllSelect(this);
+              this.nextSibling.classList.toggle("select-hide");
+              this.classList.toggle("select-arrow-active");
+            });
+        }
+        function closeAllSelect(elmnt) {
+          /*a function that will close all select boxes in the document,
+          except the current select box:*/
+          var x, y, i, xl, yl, arrNo = [];
+          x = document.getElementsByClassName("select-items");
+          y = document.getElementsByClassName("select-selected");
+          xl = x.length;
+          yl = y.length;
+          for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+              arrNo.push(i)
+            } else {
+              y[i].classList.remove("select-arrow-active");
+            }
+          }
+          for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)<0) {
+              x[i].classList.add("select-hide");
+            }
+          }
+        }
+        /*if the user clicks anywhere outside the select box,
+        then close all select boxes:*/
+        document.addEventListener("click", closeAllSelect);
+
+        });
+
+      
+        /*product-image*/
+
+
+        //setting the alt as 1 2 3 for sliding and imgIndicators mouse enter and leave
+        var imgIndicators = document.getElementsByClassName("img-indicators");
+        for(var i=0;i<imgIndicators.length;i++){
+          imgIndicators[i].setAttribute("alt",i+1);
+        }
+        //changing currentImage when enters imgIndicator
+        var currentImageInitialsrc;
+        var currentColorText;
+
+        function changeMainImg(smallimg){
+          let currentImage = document.getElementById("currentImage");
+          currentImageInitialsrc = currentImage.src;
+          currentImage.src = smallimg.src;
+          //also change the color text
+          let currentColorSlide = document.getElementById("currentColor");
+          currentColorText = currentColorSlide.innerHTML;
+          let slideNo = smallimg.alt;
+          let colorSlides = document.getElementsByClassName("color-text-slides");
+          currentColorSlide.innerHTML = colorSlides[slideNo-1].innerHTML;
+        }
+
+        function getbackMainImg(smallimg){
+          let currentImage = document.getElementById("currentImage");
+          currentImage.src = currentImageInitialsrc;
+          //getback the initial color
+          let currentColorSlide = document.getElementById("currentColor");
+          currentColorSlide.innerHTML = currentColorText;
+        }
+       
+        var current_slide;
+        function changeimage(smallimg){
+
+          images = document.getElementsByClassName("main-img");
+         
+          images[current_slide-1].src = smallimg.src;
+          smallImagesColumns = document.querySelectorAll(".small-img-column");
+          currentImages = smallImagesColumns[current_slide-1].querySelectorAll("img");
+          for(var i=0;i<currentImages.length;i++) {
+            currentImages[i].removeAttribute("id");
+          }
+
+          smallimg.setAttribute("id","current-image");
+
+        }
+        showSlideMain();
+        function showSlideMain(indicator){
+
+          if(indicator==null){
+            n = 1;
+          }
+          else{
+            let currentImage = document.getElementById("currentImage");
+            currentImage.src = currentImageInitialsrc;
+            //getback the initial color
+            let currentColorSlide = document.getElementById("currentColor");
+            currentColorSlide.innerHTML = currentColorText;
+            n = indicator.alt;
+          }
+          console.log(n);
+          current_slide = n;
+          showSlide(n);
+        }
+        function showSlide(n) {
+          var image;
+          var slides = document.getElementsByClassName("image-slides");
+          var colorTextSlides = document.getElementsByClassName("color-text-slides");
+          var imgIndicators = document.getElementsByClassName("img-indicators");
+          for(var i=0;i<slides.length;i++) {
+            slides[i].style.display = "none";
+            colorTextSlides[i].style.display = "none";
+            colorTextSlides[i].removeAttribute("id");
+            image = slides[i].getElementsByClassName("main-img")[0];
+            image.removeAttribute("id");
+            imgIndicators[i].className = imgIndicators[i].className.replace(" active", "");
+
+          }
+
+          slides[n-1].style.display = "flex";
+          colorTextSlides[n-1].style.display = "inline-block";
+          imgIndicators[n-1].className += " active";
+          image = slides[n-1].getElementsByClassName("main-img")[0];
+          image.setAttribute("id","currentImage");
+          colorTextSlides[n-1].setAttribute("id","currentColor");
+          currentImageInitialsrc = image.src;
+          currentColorText = colorTextSlides[n-1].innerHTML;
+          colorInput = document.getElementById("color");
+
+          colorInput.value = colorTextSlides[n-1].innerHTML.trim();
+
+          $("#color").trigger("change");
+          console.log(typeof colorInput.value);
+        }
+
+
+
+        function showPointer(x){
+          if(x.matches){
+
+
+                 //lens and pointer
+                var images,lens,i;
+                images = document.getElementsByClassName("main-img");
+                lens = document.getElementById("lens");
+              
+                console.log(lens);
+                lensPointer = document.createElement("div");
+                lensPointer.setAttribute("class","lens-pointer");
+                lensParent = lens.parentNode;
+                productContainer = document.getElementsByClassName("product-image-container")[0];
+                productContainer.insertBefore(lensPointer,lensParent);
+
+                
+          
+                cx = lens.offsetWidth/lensPointer.offsetWidth;
+                cy = lens.offsetHeight/lensPointer.offsetHeight;
+
+
+                let mainImages = document.getElementsByClassName("main-img");
+                for(var i=0;i<mainImages.length;i++){
+                    mainImages[i].addEventListener("mousemove",function(event){
+                    zoomFunc(event,this);
+                  });
+                    mainImages[i].addEventListener("mouseleave",function(){
+                    onPointerLeave();
+                  });
+                }
+                
+
+                lensPointer.addEventListener("mousemove",function(event){
+                  let infoColumn = document.getElementById("info-column");
+                  infoColumn.style.zIndex = "-1";
+                  image = document.getElementById("currentImage"); 
+                  zoomFunc(event,image);
+                });   
+
+                lensPointer.addEventListener("mouseleave",onPointerLeave); 
+
+          }
+        }
+
+
+        let pointerMedia = window.matchMedia("(min-width:768px)");
+        showPointer(pointerMedia);
+        pointerMedia.addListener(showPointer);
+
+        //lens and pointer
+       /* var images,lens,i;
+        images = document.getElementsByClassName("main-img");
+        lens = document.getElementById("lens");
+      
+        console.log(lens);
+        lensPointer = document.createElement("div");
+        lensPointer.setAttribute("class","lens-pointer");
+        lensParent = lens.parentNode;
+        productContainer = document.getElementsByClassName("product-image-container")[0];
+        productContainer.insertBefore(lensPointer,lensParent);
+
+        
+  
+        cx = lens.offsetWidth/lensPointer.offsetWidth;
+        cy = lens.offsetHeight/lensPointer.offsetHeight;
+
+
+        let mainImages = document.getElementsByClassName("main-img");
+        for(var i=0;i<mainImages.length;i++){
+            mainImages[i].addEventListener("mousemove",function(event){
+            zoomFunc(event,this);
+          });
+            mainImages[i].addEventListener("mouseleave",function(){
+            onPointerLeave();
+          });
+        }
+        
+
+        lensPointer.addEventListener("mousemove",function(event){
+          let infoColumn = document.getElementById("info-column");
+          infoColumn.style.zIndex = "-1";
+          image = document.getElementById("currentImage"); 
+          zoomFunc(event,image);
+        });   
+
+        lensPointer.addEventListener("mouseleave",onPointerLeave); 
+        */
+
+        //onPointerLeave();
+       function onPointerLeave(){
+
+          //for hiding the pointer
+          let pointer = document.getElementsByClassName("lens-pointer")[0];
+          pointer.style.opacity = "0";
+
+          let infoColumn = document.getElementById("info-column");
+          infoColumn.style.zIndex = "1";
+          var lens = document.getElementById("lens");
+          lens.style.display = "none";
+          lens.style.boxShadow = "";
+       }
+
+        function zoomFunc(e,image) {
+
+          //for displaying the pointer
+          let pointer = document.getElementsByClassName("lens-pointer")[0];
+          pointer.style.opacity = "1";
+          
+          //for displaying lens on top of info 
+          let infoColumn = document.getElementById("info-column");
+          infoColumn.style.zIndex = "-1";
+
+
+
+          var lens = document.getElementById("lens");
+          //let productLens = document.getElementsByClassName("product-lens")[0];
+          //productLens.style.display = "none";
+          lens.style.display = "block";
+           lens.style.boxShadow = "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)";
+          lens.style.backgroundImage = "url('" + image.src + "')";
+          lens.style.backgroundRepeat = "no-repeat";
+          lens.style.backgroundSize = (image.width*cx) + "px " + (image.height*cy) + "px";
+          var pos,x,y,a,b;
+          e.preventDefault();
+          pos = getCursorPos(e);
+          b = image.getBoundingClientRect();
+         
+          a = productContainer.getBoundingClientRect();
+          h = b.left - a.left;
+          v = b.top - a.top;
+          
+          x = pos.x;
+          y = pos.y;
+          x = x - (lensPointer.offsetWidth/2);
+          y = y - (lensPointer.offsetHeight/2);
+          if(x > image.width + h - lensPointer.offsetWidth){
+            x = image.width + h - lensPointer.offsetWidth;
+          }                  
+          if(x<h){
+            x = h;
+          }
+          if(y > image.height + v - lensPointer.offsetHeight){
+            y = image.height + v - lensPointer.offsetHeight;
+          }
+          if(y<v){
+            y=v;
+          }
+          lensPointer.style.left = x + "px";
+          lensPointer.style.top = y + "px";
+          console.log("final x", x);
+          console.log("final y", y);
+          lens.style.backgroundPosition = "-" + ((x-h)*cx) + "px -" + ((y-v)*cy) + "px"; 
+
+          function getCursorPos(e) {
+            var a,x,y,b;
+            e = e || window.event;
+            a = productContainer.getBoundingClientRect();
+            let windowTop = $(window).scrollTop();
+            console.log(windowTop)
+            x = e.pageX - a.left;
+            y = e.pageY - a.top - windowTop;
+            console.log("cursor x: ",e.pageX);
+            console.log("cursor y: ",e.pageY);
+            console.log("bounding left: ",a.left);
+            console.log("bounding top: ",a.top);
+            let dist = $(productContainer).offset().top;
+            console.log("offset top: ",dist);
+
+           
+           
+            return {x:x,y:y}; 
+          }
+         }
+
+
+      // Add to Wishlist
+
+ 
+      
+      // end Add to wishlist    
+
+      let shippingCharges = {
+        '110025':'25',
+        '110063':'30'
+      }
+
+
+      function checkDelivery(){
+        console.log("kkk")
+        let pincode = $("#pincode").val();
+
+        if(pincode in shippingCharges){
+          console.log("sf")
+          localStorage.setItem('shippingCharge',shippingCharges[pincode])
+          $("#deliverText").html('Can be delivered!');
+        }
+        else{
+          console.log("sssf")
+          $("#deliverText").html('Cannot be delivered!');
+        }
+
+      }
+        
+
+</script>
+  
+{% endblock javascript %}

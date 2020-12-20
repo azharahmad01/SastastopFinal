@@ -1,0 +1,434 @@
+
+ html {
+        font-size: calc(1em + 1vw);
+      } /* #f4f6f9; */
+      body{
+        overflow-x: hidden;
+        margin-top: -30px !important;
+      }
+
+      
+   .home-banner {
+        position: relative;
+        width: 100%;
+      }
+      .home-banner img {
+        height: auto;
+        max-width: 100%;
+      }
+      .home-banner-text {
+        position: absolute;
+        top: 15%;
+        left: 52%;
+        color: white;
+        font-size: 2em;
+        line-height: 1em;
+      }
+      #shop-now {
+        color: black;
+        text-decoration: none;
+        padding: 10px;
+
+        background-color: white;
+        font-size: 16px;
+        position: relative;
+        top: -18px;
+        left: 10px;
+      }
+
+      .chat-window {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width:300px;
+        max-height: 310px;
+        background-color: white;
+        border: 1px solid black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        border: none;
+        transform: translateX(110%);
+        border:1px solid grey;
+        transition: 0.5s ease;
+        z-index: 199;
+      }
+      .chat-window .row {
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+      }
+      .chat-form {
+        width: 100%;
+      }
+      .chat-form input {
+        font-size: 16px;
+        height: 40px;
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 5px;
+        border: 1px black solid;
+        border-radius: 5px;
+      }
+      .chat-form input:focus {
+        outline: rgb(2, 2, 2);
+      }
+      .chat-window .chat-header {
+        margin-bottom: 5px;
+        padding: 10px;
+        font-size: 20px;
+        text-align: center;
+        text-transform: capitalize;
+        background-color: #915d30;
+        color: white;
+        border-radius: 8px;
+        border: none;
+      }
+      .chat-form textarea {
+        margin-top: 5px;
+        width: 100%;
+        margin-bottom: 0px;
+        padding: 5px;
+        resize: none;
+        border-radius: 5px;
+        font-size: 16px;
+        border: 1px black solid;
+      }
+      .chat-form textarea:focus {
+        outline: rgb(2, 2, 2);
+      }
+      .chat-send button {
+        width: 100%;
+        padding: 10px;
+        font-size: 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        margin: 0px;
+      }
+      .chat-window-open {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        transition: 0.4s ease;
+        z-index: 99;
+      }
+      .chat-window-open button {
+        border: none;
+        border-radius: 100%;
+        outline: none;
+        border: 2px solid rgb(176, 159, 183);
+      }
+      .close-chat {
+        position: absolute;
+        top: 0px;
+        left: -40px;
+        display: none;
+      }
+      .close-chat button {
+        outline: none;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        border-radius: 100%;
+      }
+      .close-chat button img {
+        width: 100%;
+        height: 100%;
+        border:2px solid white;
+        background-color: white;
+        border-radius:100%;
+      }
+      /* 2nd container */
+      .second-container img {
+        width: 100%;
+      }
+
+      .sec-1 {
+        padding: 130px 120px 0px 50px;
+      }
+      .sec-2 {
+        padding: 30px 50px 60px 0px;
+      }
+      .sec-3 {
+        padding: 50px 40px 60px 50px;
+      }
+      .sec-container {
+        line-height: 1.2em;
+        color: black;
+      }
+      .sec-content-1 {
+        font-size: 0.5em;
+      }
+      .sec-content-2 {
+        font-size: 1em;
+        font-weight: 500;
+      }
+      .sec-content-3 {
+        font-size: 0.7em;
+        font-weight: 300;
+      }
+      @media only screen and (max-width: 992px) {
+        .sec-1 {
+          padding: 40px 50px 60px 50px;
+        }
+        .sec-2 {
+          padding: 0px 50px 60px 50px;
+        }
+        .sec-3 {
+          padding: 0px 50px 60px 50px;
+        }
+        /*2nd container*/
+
+        .home-banner-text{
+          top:initial;
+          left:5%;
+          bottom:3% !important;
+
+        }
+
+        #shop-now{
+          position: absolute;
+          bottom:0%;
+          top:initial;
+          left: 110%;
+          width:120px;
+
+          display: inline-block;
+          padding: 0px 10px;
+        }
+
+        body{
+          margin-top: -60px !important;
+        }
+
+
+      }
+      .third-container {
+        background-color: black;
+        width: 100%;
+        background-color: ;
+        padding-top: 3.5em;
+        padding-bottom: 2em;
+      }
+      .third-container .third-header div {
+      }
+      .header-1 {
+        padding-left: 50px;
+        font-size: 60px;
+        color: white;
+      }
+      .header-2 {
+        font-size: 20px;
+        color: #7f7f7f;
+        line-height: 1em;
+        padding-top: 30px;
+        padding-left: 50px;
+      }
+      .header-3 {
+        text-align: right;
+        padding-right: 50px;
+        font-size: 0.8em;
+        padding-top: 1em;
+        color: white;
+      }
+      .first-line {
+        background-color: #7f7f7f;
+        height: 0.1px;
+        margin-left: 40px;
+        margin-top: 2em;
+        margin-right: 40px;
+      }
+      @media only screen and (max-width: 1100px) {
+        .header-1 {
+          font-size: 40px;
+        }
+        .header-2 {
+          padding-top: 10px;
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        
+        .header-3 {
+          display: none;
+        }
+         .home-banner-text{
+          font-size:25px;
+         }
+         body{
+        
+          margin-top: 0px !important;
+        }
+      }
+
+      /*third container*/
+      .third-content {
+        padding: 50px;
+      }
+      .third-content .img-column {
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      .third-content .img-column img {
+        width: 100%;
+      }
+      .third-content .content-main {
+        color: white;
+        font-size: 1.2em;
+        line-height: 35px;
+      }
+      .third-content .content-sub {
+        margin-top: 1em;
+        color: white;
+        font-size: 0.6em;
+      }
+
+      @media only screen and (max-width: 576px) {
+        .third-content .content-main {
+          line-height: 25px;
+        }
+      }
+      .fourth-container {
+        position: relative;
+      }
+      .fourth-container img {
+        width: 100%;
+      }
+
+      .fourth-content {
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        transform: translate(-15%, -15%);
+      }
+      .fourth-con-1 {
+        color: white;
+        font-size: 0.8em;
+      }
+      .fourth-con-2 {
+        font-size: 2.5em;
+        line-height: 0.8em;
+        color: white;
+      }
+      .fourth-content a {
+        display: inline-block;
+        margin-top: 1em;
+        padding: 15px;
+        color: white;
+        font-size: 18px;
+        background-color: black;
+      }
+
+      /*Aos animations*/
+      [data-aos="img-anim"] {
+        transform: scaleX(1);
+        transition-property: transform;
+      }
+      [data-aos="img-anim"].aos-animate {
+        transform: scaleX(1);
+        width: 100%;
+      }
+
+      [data-aos="img-slide"] {
+        left: 0%;
+        transition-property: left;
+      }
+      [data-aos="img-slide"].aos-animate {
+        left: 30%;
+      }
+      @media only screen and (min-width: 768px) {
+        [data-aos="text-rotate"] {
+          opacity: 0;
+          transform: rotate(-5deg);
+          transition: transform opacity;
+        }
+        [data-aos="text-rotate"].aos-animate {
+          opacity: 1;
+          transform: rotate(0deg);
+        }
+      }
+
+      /*footer*/
+      /*carousel*/
+
+.carousel2-container {
+}
+.secondwrapper {
+  padding: 0px 20px 0px 110px;
+}
+.carousel2-headline {
+  padding-right: 110px;
+}
+.secondcarousel-buttons {
+  position: relative;
+  border-radius: 20px;
+  width: 40px;
+  margin-left: 6px;
+  padding-left: 11px;
+  padding-top: 0px;
+  height: 40px;
+  background-color: black;
+}
+
+.secondcarousel-buttons span{
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+
+/*carousel*/
+
+.cS-hidden {
+        height: 1px;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        overflow: hidden;
+      }
+.slider-container {
+        
+        background-color: white;
+        position: relative;
+
+        width: 97%;
+        margin:0px auto;
+        
+        padding: 0px 30px;
+        padding-bottom: 0px;
+      }
+
+/*CONTROLS*/ 
+      .slideControls{
+        position: absolute;
+        right:15px;
+        top:-55px;
+        z-index: 1;
+        user-select: none;
+      }
+      
+    
+      .slider-container ul {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+      }
+
+
+.product-slide{
+  width:200px;
+  height:350px;
+
+  
+}
+#products li{
+  border: 1px solid #E9E9EB;
+  margin-left:10px; 
+}
+.slider-product-header{
+  font-size:20px;
+  font-weight: 500;
+}

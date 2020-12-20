@@ -1,0 +1,231 @@
+
+.select-address-heading {
+  background-color: blanchedalmond;
+  height: 50px;
+  font-size: 20px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+.address-row {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 10px;
+  background-color: white;
+}
+.address-row .input-col {
+  width: 5%;
+
+  padding-left: 15px;
+  padding-top: 3px;
+}
+.address-row .text-col {
+  padding: 0px 15px;
+  width: 95%;
+}
+
+.text-col .address-name {
+  font-weight: 1000;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+.text-col .address-text {
+}
+.address-radio {
+  transform: scale(1.5);
+}
+.add-address {
+}
+
+.add-address-heading {
+  user-select: none;
+  height: 50px;
+  font-size: 20px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+.add-address-heading img {
+  position: relative;
+  top: -2px;
+  left: -8px;
+}
+.new-address-row {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0px 0px;
+  background-color: white;
+  height: 0%;
+  display: none;
+
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+.new-address-row .input-col {
+  width: 5%;
+  margin-top: 20px;
+  padding-left: 25px;
+  padding-top: 3px;
+}
+.new-address-row .address-form {
+  margin-top: 20px;
+  padding: 0px 25px;
+  width: 95%;
+}
+
+.address-container {
+  padding: 50px;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+}
+.form-header {
+  font-size: 18px;
+  padding: 0px 0px;
+}
+
+#address-form,
+#select-address-form{
+  padding: 20px 0px;
+}
+
+.form-content {
+  width: 100%;
+}
+.input-group input {
+  margin-right: 4%;
+  width: 40%;
+  height: 50px;
+  font-size: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 15px;
+  color: black;
+  outline: none;
+}
+.input-group input:focus {
+  border: 1px solid black;
+}
+.input-group textarea {
+  width: 84%;
+  border: 1px solid #e5e7eb;
+  padding: 15px;
+  color: black;
+  resize: none;
+  outline: none;
+}
+.input-group textarea:focus {
+  border: 1px solid black;
+}
+.input-group {
+  margin-top: 10px;
+}
+
+.input-group .address-submit {
+  background-color: black;
+  padding: 10px 30px;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.input-group .address-cancel {
+  margin-left: 20px;
+  background-color: white;
+  padding: 10px 30px;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  border: 1px solid #e5e7eb;
+  color: black;
+}
+
+/* coupon card */
+.card {
+  border-radius: 0%;
+  border: 1px solid #e5e7eb;
+}
+.bag-coupon-card .col-12 {
+  color: black;
+  font-size: 15px;
+  font-weight: 100;
+  margin-top: 4px;
+  background-color: white;
+}
+.card-header {
+  background-color: white;
+  borde-bottom: 1px solid #e5e7eb;
+}
+
+.coupon-btn {
+  background: black;
+  color: white;
+}
+.coupon-btn:hover {
+  color: white;
+}
+
+#available-or-not {
+  color: #b92b27;
+}
+
+/*modifying bag */
+.bag-list {
+  background-color: #f1f3f6;
+}
+
+
+
+ .summary-column{
+  border-bottom: 1px solid #e5e7eb;
+}
+
+  
+@media only screen and (max-width: 767px){
+  .order-column{
+    position: fixed;
+    bottom:0px;
+    left:0px;
+    z-index: 1;
+    margin:0px;
+    padding: 0px;
+    width:100vw;
+  }
+  .order-column .row > .col-12{
+    
+  }
+  .alert-container{
+    font-size: 14px;
+  }
+  .order-column {
+    border-top:2px solid rgb(130, 129, 129);
+  }
+  
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .summary-column{
+ border:none;
+}
+
+}
+
+/*breadcrumb*/
+.profile-breadcrumb {
+  font-size: 23px;
+  background-color: #f4f6f9;
+}
+@media only screen and (max-width: 767px){
+  .profile-breadcrumb{
+    font-size: 18px;
+  }
+}
+
+.profile-breadcrumb li a{
+  text-decoration: none;
+  color:rgb(108, 102, 102);;
+}
+
+.profile-breadcrumb .active a{
+  color:black;
+}
+/*end*/

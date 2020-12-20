@@ -1,0 +1,568 @@
+{% extends 'base.html' %}
+{% load static %}   
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
+{% endblock %} 
+
+
+{% block content %}
+
+     <!--home banner and chat box-->
+    <!--Home bg-->
+    <div class="home-banner">
+      <img src="{% static 'img/homebg.jpg' %}" alt="" />
+      <div class="home-banner-text">          
+            Your One Stop To<br />
+        Sasti College Life<br />
+             <a  href="#" id="shop-now">SHOP NOW</a>
+      </div>
+    </div>
+
+    <div class="chat-window-open">
+      <button onclick="openChat()">
+        <img src="{% static 'img/chatlogo.png' %}" alt="" />
+      </button>
+    </div>
+    <div class="chat-window">
+      <div class="close-chat">
+        <button onclick="closeChat()">
+          <img src="{% static 'img/close-chat4.png' %}" alt="" />
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="chat-header">
+            Chat with Us!
+          </div>
+          <div class="chat-form">
+            <label class="sr-only" for="name">Name :</label>
+            <input
+              type="number"
+              placeholder="Your Name"
+              class=""
+              id="phone"
+              name="phone"
+              autocomplete="off"
+            />
+            <label class="sr-only" for="phone">Phone :</label>
+            <input
+              type="number"
+              placeholder="Your phone"
+              class=""
+              id="phone"
+              name="phone"
+              autocomplete="off"
+            />
+            <label class="sr-only" for="message">Message :</label>
+            <textarea
+              placeholder="Your message"
+              type="tex"
+              class=""
+              id="message"
+              name="message"
+              autocomplete="off"
+            ></textarea>
+          </div>
+          <div class="chat-send">
+            <button>SEND MESSAGE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="row second-container">
+      <div class="col-12 col-md-12 col-lg-7 sec-1" data-aos="slide-up">
+        <img src="{% static 'img/img1.jpg' %}" />
+        <div class="sec-container">
+          <span class="sec-content-1">SHIRTS</span><br />
+          <span class="sec-content-2"
+            >Beautiful cut outs<br />
+            Custom made for You</span
+          ><br />
+          <span class="sec-content-3">By Israil Khan</span>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-5 sec-2" data-aos="slide-up">
+        <img src="{% static 'img/img2.jpg' %}" />
+        <div class="sec-container">
+          <span class="sec-content-1">JEANS</span><br />
+          <span class="sec-content-2"
+            >Beautiful cut outs<br />
+            Custom made for You</span
+          ><br />
+          <span class="sec-content-3">By Ariz Khan</span>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-7 sec-3" data-aos="slide-up">
+        <img src="{% static 'img/img3.jpg' %}" />
+        <div class="sec-container">
+          <span class="sec-content-1">SUITS</span><br />
+          <span class="sec-content-2"
+            >Beautiful cut outs<br />
+            Custom made for You</span
+          ><br />
+          <span class="sec-content-3">By Mohd Kaif</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="third-container">
+      <div class="row third-header">
+        <div class="col-12 col-md-4 header-1">
+          ON TREND
+        </div>
+        <div class="col-6 col-md-4 header-2">
+          Our latest for cool college students.
+        </div>
+        <div class="col-4 header-3">
+          VIEW ALL
+        </div>
+      </div>
+      <hr class="first-line" />
+      <div class="row third-content align-items-end">
+        <div class="col-12 col-md-4 col-one pr-md-3">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src=" {% static 'img/sample1.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-two pt-4 pt-md-0 pr-md-3">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/homebg.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div class="content-main">
+                Beautiful cut outs<br />
+            Custom made for <br>You</span>
+              </div>
+              <div class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-three pt-4 pt-md-0">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/sample2.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <!--PRODUCTS CAROUSEL-->
+    <div class="slider-container py-3">
+      <div class="row slider-product-header">
+        <div class="col-12  py-3">
+          <span style="font-size: 30px;font-weight: 400">LATEST PRODUCTS</span><br />
+        </div>
+      </div>
+      <div class="row slides">
+        <div class="col-12">
+          <div class="slideControlsLatest slideControls">
+           <a style="display:inline-block;background-color: black;" class="slidePrev secondcarousel-buttons ">
+              <span class="carousel-control-prev-icon " ></span>
+        
+             </a>
+            <a style="display: inline-block;" class="slideNext secondcarousel-buttons">
+              <span class="carousel-control-next-icon"></span>
+              
+            </a>
+          </div> 
+          <ul id="products-latest" class="cs-hidden">
+            {% for product in products %}
+              <li class="item-a">
+                <div class="product-slide ">
+                        <div class="row">
+                          <div class="col-12">
+                            <img
+                              src="{{product.variations.first.image1.url}}"
+                              class=""
+                              height="250px"
+                              width="200px"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div style="line-height: 19px;padding-left:15px; " class="col-12 py-1">
+                            <a style="display:inline-block;color:black;text-decoration: none;font-size: 16px;" href="#">
+                           {{product.name}}</a><br>
+                            <span style="font-weight: 600;font-size:18px;">{{product.price}}</span>
+                            <del><span style="color:grey;font-size:14px;margin-left:3">Rs 2399  </span></del>
+                            <span style="color:#EC3E6D;font-size:14px;"> (40% OFF)</span>
+                          </div>
+                        </div>
+                </div>
+            </li>
+            {% endfor %}
+            
+           
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--END-->
+
+    <div style="background-color: white;" class="third-container">
+      <div class="row third-header">
+        <div style="color: black;" class="col-12 col-md-4 header-1">
+          ON TREND
+        </div>
+        <div style="color: grey;" class="col-6 col-md-4 header-2">
+          Our latest for cool college students.
+        </div>
+        <div style="color: black;" class="col-4 header-3">
+          VIEW ALL
+        </div>
+      </div>
+      <hr class="first-line" />
+      <div class="row third-content align-items-end">
+        <div class="col-12 col-md-4 col-one pr-md-3">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/hoodie1.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div style="color: black;" class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div style="color: black;" class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-two pt-4 pt-md-0 pr-md-3">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/Hoodie2.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div style="color: black;" class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div style="color: black;" class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-three pt-4 pt-md-0">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/hoodie3.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div style="color: black;" class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div style="color: black;" class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--data-aos="zoom-out"
+          data-aos-delay="500"
+          data-aos-duration="2000"
+          data-aos-anchor="#img-anim1"
+          data-aos-offset="150"-->
+    <div class="fourth-container">
+      <div id="img-anim1">
+        <img src="{% static 'img/4bg.jpg' %}" alt="" />
+      </div>
+      <div class="fourth-content">
+        <span class="fourth-con-1">GET YOUR STUFFS FAST!</span>
+        <br />
+        <span class="fourth-con-2"
+          >Your one stop <br />
+          for best design<br />
+          clothing.</span
+        >
+        <br />
+        <a href="#">GET STARTED</a>
+      </div>
+    </div>
+
+    <div style="background-color: white;" class="third-container">
+      <div class="row third-header">
+        <div style="color: black;" class="col-12 col-md-4 header-1">
+          ON TREND
+        </div>
+        <div style="color: grey;" class="col-6 col-md-4 header-2">
+          Our latest for sports and leisure activities.
+        </div>
+        <div style="color: black;" class="col-4 header-3">
+          VIEW ALL
+        </div>
+      </div>
+      <hr class="first-line" />
+      <div class="row third-content align-items-end">
+        <div class="col-12 col-md-4 col-one pr-md-3">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/6.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div style="color: black;" class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div style="color: black;" class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-two pt-4 pt-md-0 pr-md-3">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/7.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div style="color: black;" class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div style="color: black;" class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-three pt-4 pt-md-0">
+          <div class="row">
+            <div class="col-6 col-md-12 img-column">
+              <img src="{% static 'img/8.jpg' %}" alt="" />
+            </div>
+            <div
+              class="col-6 col-md-12 pt-md-3"
+              data-aos="text-rotate"
+              data-aos-anchor-placement="bottom-bottom"
+            >
+              <div style="color: black;" class="content-main">
+                Beautiful cut outs<br />
+                Custom made for <br>You</span>
+              </div>
+              <div style="color: black;" class="content-sub">
+                By Mohammad Shakti
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+<!--
+    <div class="secondwrapper">  
+      <div class="container-fluid carousel2-container mt-5 mb-5 d-lg-block d-none">
+        <div class="row mb-4 carousel2-headline">
+          <div class="col-md-8">
+           <h3>New products</h3> 
+          </div>
+          <div class="col-md-4">
+            <div class="controls pull-right hidden-xs">
+              <div class="row">
+                <div class="col secondcarousel-buttons">
+                  <a class="carousel-control-prev-icon " href="#secondcarousel"
+                    data-slide="prev"></a>
+                </div>
+                <div class="col secondcarousel-buttons">
+                  <a class="carousel-control-next-icon" href="#secondcarousel"
+                  data-slide="next"></a>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      
+          <div id="secondcarousel" class="carousel slide">
+            <div class="carousel-inner">
+
+
+              <div class="carousel-item active">
+                <div class="row no-gutters ">
+
+                  {% for product in products %}
+                    <div class="col-xl-2  col-lg-3 ml-2 mr-4 bg-white">
+                      <div class="row">
+                        <div class="col-12">
+                          <img
+                            src="{{product.variations.first.image1.url}}"
+                            class=""
+                            height="250px"
+                            width="200px"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 pl-4 py-2">
+                          <a style="color:black;text-decoration: none;" href="{% url 'product-detail' product.id %}">
+                          {{product.name}}</a><br />
+                          <b>{{product.price}}</b>
+                        </div>
+                      </div>
+                     
+                    </div>
+                    {% if forloop.counter|divisibleby:5 and forloop.counter > 0 and not forloop.last%}
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="row no-gutters ">
+
+                    {% endif %}
+                  {% endfor %}
+
+
+              </div>
+            </div>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  -->
+    
+ {% endblock%}
+
+ {% block javascript %}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script type="text/javascript">
+   
+
+       AOS.init({
+        duration: 1200,
+        easing: "ease-out-quad",
+      });
+
+       $(window).on("load",function(){
+         nav = document.getElementsByClassName("my-nav")[0];
+         nav.style.backgroundColor = "transparent";
+       });
+
+        window.onscroll = function () {
+        topnavScroll();
+      };
+      var nav, anchor, img;
+      function topnavScroll() {
+        nav = document.getElementsByClassName("my-nav")[0];
+        console.log(nav)
+        if (document.documentElement.scrollTop > 150) {
+          nav.style.backgroundColor = "black";
+          console.log(nav.style.backgroundColor);
+         
+        } else {
+          nav.style.backgroundColor = "transparent";
+        }
+      }
+
+
+
+       var sliderProducts = $("#products-latest").lightSlider({
+          autoWidth: true,
+          controls:false,
+          loop: true,
+          pager:false,
+          slideEndAnimation:true,
+          onSliderLoad: function () {
+            $("#autoWidth").removeClass("cS-hidden");
+          }
+        });
+        $('.slideControlsLatest .slidePrev').click(function() {
+            sliderProducts.goToPrevSlide();
+        });
+
+        $('.slideControlsLatest .slideNext').click(function() {
+            sliderProducts.goToNextSlide();
+        });
+
+    function openChat() {
+        var chatWindow = document.getElementsByClassName("chat-window")[0];
+        var chatButton = document.getElementsByClassName("chat-window-open")[0];
+        var closeButton = document.getElementsByClassName("close-chat")[0];
+        
+        chatWindow.style.transform = `translateX(0%)`;
+
+        closeButton.style.display = "block";
+      }
+      function closeChat() {
+        var chatWindow = document.getElementsByClassName("chat-window")[0];
+        var chatButton = document.getElementsByClassName("chat-window-open")[0];
+        var closeButton = document.getElementsByClassName("close-chat")[0];
+        closeButton.style.display = "none";
+        
+        chatWindow.style.transform = `translateX(110%)`;
+      }
+
+ </script>
+
+ {% endblock javascript %}

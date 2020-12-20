@@ -1,0 +1,624 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'product/css/bag.css' %}">
+{% endblock %} 
+{% block content %}
+
+<div class="alert-container">
+  <div class="row">
+    <div class="col-12">
+      <span class="alert-content">
+        <img width="40px" height="40px" src="{% static 'img/error.png' %}">
+      Sorry! Not Enough Items Available
+      </span>
+    </div>
+  </div>
+</div>
+<div class="background-nav">
+  </div>
+ 
+    <!--Quantity modal-->
+    <div id="quantitymodal" class="modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p style="font-size: 18px; font-weight: 400;">Select Quantity</p>
+            <button type="button" class="close ml-auto" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+          <input style="padding:10px;outline:none;" type="number" max="20" id="quantity">
+            <div class="mt-4">
+              <button
+                style="background: black; color: white;"
+                type="button"
+                class="btn"
+                id="quantity-btn"
+                data-dismiss="modal"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Coupon Modal-->
+    <div id="couponmodal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content p-0">
+          <div class="modal-header">
+            APPLY COUPON
+             <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+          </div>
+          <div class="modal-body">
+            
+            <form class="coupon-form">
+              <div class="input-group">
+                <input type="text" name="coupon" placeholder="coupon" autocomplete="off" id="coupon">
+
+                <div id="couponText">
+                </div>
+              </div>
+
+              <div class="input-group coupon-options">
+                <button type="button" class="cancel-coupon" data-target="modal">
+                    CANCEL
+                </button>
+                <button type="submit" class="submit-coupon" id="applyCoupon">
+                  APPLY
+                </button>
+              </div>
+            </form>
+     
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid bag-list mt-0">
+      <div class="row justify-content-md-center py-4">
+        <div class="col-12  px-lg-5 py-0">
+          <div class="row mx-0 my-0 px-lg-3">
+            <div class="col-12 p-0">
+                <nav class=" m-0" aria-labelledby="breadcrumb">
+                  <ol style="background-color: transparent;letter-spacing: 0.3em" class="breadcrumb profile-breadcrumb">
+                    <li class="breadcrumb-item active"><a  href="#">BAG</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'place-order' %}">SHIPPING</a></li>
+                    <li class="breadcrumb-item"><a  href="#">CHECKOUT</a></li>
+                  </ol>
+                </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 product-container col-lg-7 ">
+
+          <!--
+          <div class="row bag-product-detail mx-0 my-0">
+            <div class="col-12 p-2 cart-heading">
+              My Cart ({{items.count}})
+            </div>
+          </div>
+
+          {% for item in items %}
+       
+          <div class="row bag-product-detail mx-0 my-0">
+            <div class="col-12 p-2">
+              <div class="row">
+                <div class="col-12">
+                  <div class="media">
+                    <div style="width: 100%;" class="row no-gutters">
+                      <div class="col-3 col-md-2">
+                        <img class="img-fluid" src="{{item.product_detail.image1.url}}" alt="" />
+                      </div>
+                      <div class="col-9 col-md-10">
+                        <div class="media-body pl-3">
+                          <span style="font-size: 20px; font-weight: 600;"
+                            >Brand Name</span
+                          >
+                          <span
+                            style="font-size: 20px; font-weight: 600;"
+                            class="float-right"
+                            >{{item.product_detail.product.price}}</span
+                          >
+                          <br />
+                          <span style="font-size: 16px;">
+                            {{item.product_detail.product.name}}
+                          </span>
+                          <br />
+                          <span
+                            style="
+                              font-weight: 300;
+                              color: rgb(70, 64, 64);
+                              font-size: 14px;
+                            "
+                          >
+                            Color : {{item.product_detail.color}}<br />
+                            Size : {{item.product_detail.size}}
+                          </span>
+
+                          <div class="mt-3">
+                            
+                            <button
+                              type="button"
+                              class="btn bag-quantity"
+                              data-toggle="modal"
+                              data-target="#quantitymodal"
+                              onclick="insertingModalContent(this,'{{item.id}}')"
+                            >
+                              Qty: {{item.quantity}}
+                              <span class="fa fa-caret-down"></span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 100%;" class="row product-btn mt-2 no-gutters">
+                <div class="product-remove-btn col-3">
+                  <a
+                    style="color: black;"
+                    href="{% url 'delete-bag-item' item.id %}"
+                    class="btn product-remove w-100"
+                  >
+                    REMOVE
+                  </a>
+                </div>
+                <div class="col-8">
+                  <button type="submit" class="btn product-wish w-100">
+                    MOVE TO WISHLIST
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+
+        -->
+          
+        </div>
+        <div class="col-12 col-lg-4 mt-4 mt-lg-0 order-column">
+          <div class="row my-0">
+            <div class="col-12 ">
+              <div class="card ">
+                <div class="card-header">
+                  <span style="font-size: 16px; font-weight: 400;"
+                    >COUPONS</span
+                  >
+                  <br />
+                  <span style="padding-top: 6px;" class="fa fa-tag"></span>
+                  <span
+                    style="font-size: 14px; font-style: italic;"
+                    class="mr-auto"
+                    >Apply Coupons</span
+                  >
+                  <button
+                    type="button"
+                    class="coupon-btn btn btn-dark ml-auto float-right"
+                    data-toggle="modal"
+                    data-target="#couponmodal"
+                  >
+                    APPLY
+                  </button>
+                  <div class="clear-fit"></div>
+                </div>
+                <div class="row bag-coupon-card card-body">
+                  <div class="col-12 d-none d-md-flex">
+                    <span style="font-size: 14px; color: #535766;"
+                      >PRICE DETAILS</span
+                    >
+                  </div> 
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Bag Total</span>
+                    <span class="float-right" id="totalInit"></span>
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Bag Discount</span>
+                    <span style="color: #04a076;" class="float-right" id="discount"
+                      ></span
+                    >
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Coupon Discount</span>
+                    <span class="float-right" id="couponDiscount"></span>
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Order Total</span>
+                    <span class="float-right" id="orderTotal"></span>
+                  </div>
+                  <div class="col-12 clear-fit d-none d-md-block">
+                    <span>Delivery Charges</span>
+                    <span class="float-right" id="deliveryCharges"
+                      ></span
+                    >
+                  </div>
+                  <hr />
+                  <hr />
+                  <div
+                    style="font-size: 18px; font-weight: 400;"
+                    class="col-12 px-3"
+                  >
+                    <span>Total</span>
+                    <span class="float-right" id="total"></span>
+                  </div>
+                  <div class="col-12 px-3">
+                    <a href="{% url 'place-order' %}" class="btn w-100 coupon-btn">
+                      SHIPPING
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+    
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  
+
+
+
+  var currentItemId;
+  function insertingModalContent(currentBtn,id){
+        
+        currentItemId = id;
+        console.log(id);
+        let bagItems = JSON.parse(localStorage.getItem('cart'));
+        $("#quantity").val(bagItems[id].wanted_quantity);
+
+        var bagQuantityButtons = document.getElementsByClassName("bag-quantity");
+        for(var i=0;i<bagQuantityButtons.length;i++){
+          bagQuantityButtons[i].removeAttribute("id");
+        }
+        currentBtn.setAttribute("id","current-bag-quantity");
+        
+  }
+
+
+  let deliveryCharges = JSON.parse(localStorage.getItem('shippingCharge'));
+  let couponDiscount = 0;
+  let totalInit = 0;
+  let discount_price = 0;
+  let discount = 0;
+  let orderTotal;
+  let total;
+
+  $("#quantity-btn").on("click",function(){
+
+      let bagItems = JSON.parse(localStorage.getItem('cart'));
+
+      var quantity = document.getElementById("quantity").value;
+
+      if(bagItems[currentItemId].quantity >= quantity){
+        console.log("success");
+        if(quantity > 0){
+
+
+            let currentInit = 0;
+            let currentDiscount = 0;
+
+
+            currentInit = totalInit - (bagItems[currentItemId].product_info.price)*(bagItems[currentItemId].wanted_quantity) + (bagItems[currentItemId].product_info.price)*quantity;
+
+            currentDiscount = discount_price - (bagItems[currentItemId].product_info.discount_price)*(bagItems[currentItemId].wanted_quantity) + (bagItems[currentItemId].product_info.discount_price)*quantity;
+
+            totalInit = currentInit;
+            discount_price = currentDiscount;
+
+            if(couponDiscount != 0){
+                let coupon = $("#coupon").val();
+                $.ajax({
+                  type: 'GET',
+                  url: "{% url 'applyCoupon' %}",
+                  data: {"coupon":coupon,"amount":discount_price},
+                  success: function(response){
+
+                    if(response["valid"]){
+                      //same as before no problems
+
+                    }
+                    else {
+
+                      //amount has decreased
+                      $("#couponText").html("Not a valid coupon");
+                      couponDiscount = 0;
+                      $("#couponDiscount").html(0);
+                    }
+
+                  },
+                  error: function(response){
+                    console.log(response)
+                  }
+                });
+            }
+
+            discount = totalInit - discount_price;
+            orderTotal = discount_price - couponDiscount;
+
+            total = orderTotal + deliveryCharges;
+
+            $("#totalInit").html(totalInit);
+            $("#discount").html(discount);
+            $("#orderTotal").html(orderTotal);
+            
+            $("#total").html(total);
+
+
+            bagItems[currentItemId].wanted_quantity = quantity;
+            var bagQuantity = document.getElementById("current-bag-quantity");
+            bagQuantity.innerHTML = `Qty: ${bagItems[currentItemId].wanted_quantity}
+                                  <span class="fa fa-caret-down"></span>`;
+
+            localStorage.setItem('cart',JSON.stringify(bagItems));
+            //updating total
+            
+          
+            
+
+
+        }
+      }
+      else{
+        console.log("nope");
+        let AlertContainer = document.getElementsByClassName("alert-container")[0];
+        
+        
+        AlertContainer.style.display = "block";
+        
+        AlertContainer.style.animation = `animateBottom 1s forwards`;
+        setTimeout(function(){
+               
+             AlertContainer.style.animation = `animateToBottom 2s forwards`;
+
+          },4000);
+
+        setTimeout(function(){
+                
+          AlertContainer.style.animation = ``;
+          
+         AlertContainer.style.display = "none";
+          },5000);
+        
+       
+
+      }
+
+
+  });
+
+
+  $("#applyCoupon").on("click",function(e){
+    e.preventDefault()
+    console.log("Dfd")
+
+    let coupon = $("#coupon").val();
+    $.ajax({
+      type: 'GET',
+      url: "{% url 'applyCoupon' %}",
+      data: {"coupon":coupon,"amount":discount_price},
+      success: function(response){
+
+        if(response["valid"]){
+          couponDiscount = JSON.parse(response["discount"]);
+          localStorage.setItem('couponDiscount',couponDiscount);
+          localStorage.setItem('coupon',coupon);
+          $("#couponDiscount").html(couponDiscount);
+
+          orderTotal = discount_price - couponDiscount;
+          $("#orderTotal").html(orderTotal);
+
+          total = orderTotal + deliveryCharges;
+
+          $("#total").html(total);
+          $("#couponText").html("Coupon accepted!");
+
+        }
+        else {
+          $("#couponText").html("Not a valid coupon");
+          couponDiscount = 0;
+          localStorage.setItem('couponDiscount',0);
+          $("#couponDiscount").html(0);
+
+          orderTotal = discount_price - 0;
+          $("#orderTotal").html(orderTotal);
+
+          total = orderTotal + deliveryCharges;
+
+          $("#total").html(total);
+        }
+
+      },
+      error: function(response){
+        console.log(response)
+
+      }
+    });
+
+  });
+
+      window.addEventListener("load",function(){
+
+        if(localStorage.getItem('cart')!=null) {
+          let bagItems = JSON.parse(localStorage.getItem('cart'));
+          let count = 0;
+          for(item in bagItems){
+            count++;
+          }
+          console.log(bagItems);
+
+          let productContainer = document.getElementsByClassName("product-container")[0];
+
+          let content = ``;
+          content += `<div class="row bag-product-detail mx-0 my-0">
+            <div class="col-12 p-2 cart-heading">
+              My Cart (${count})
+            </div>
+          </div>`;
+
+    
+          let price,required;
+
+          for(item in bagItems){
+              price = bagItems[item].product_info.price;
+              required = bagItems[item].wanted_quantity;
+              totalInit += price*required;
+              discount_price += (bagItems[item].product_info.discount_price)*required;
+
+              content += `<div class="row bag-product-detail mx-0 my-0">
+            <div class="col-12 p-2">
+              <div class="row">
+                <div class="col-12">
+                  <div class="media">
+                    <div style="width: 100%;" class="row no-gutters">
+                      <div class="col-3 col-md-2">
+                        <img class="img-fluid" src="${bagItems[item].image1}" alt="" />
+                      </div>
+                      <div class="col-9 col-md-10">
+                        <div class="media-body pl-3">
+                          <span style="font-size: 20px; font-weight: 600;"
+                            >Brand Name</span
+                          >
+                          <span
+                            style="font-size: 20px; font-weight: 600;"
+                            class="float-right"
+                            >${bagItems[item].product_info.discount_price} <i class="cut"><del>${bagItems[item].product_info.price}</del></i></span
+                          >
+                          <br />
+                          <span style="font-size: 16px;">
+                            ${bagItems[item].product_info.name}
+                          </span>
+                          <br />
+                          <span
+                            style="
+                              font-weight: 300;
+                              color: rgb(70, 64, 64);
+                              font-size: 14px;
+                            "
+                          >
+                            Color : ${bagItems[item].color}<br />
+                            Size : ${bagItems[item].size}
+                          </span>
+
+                          <div class="mt-3">
+                            <!--
+                                  <button
+                                    type="button"
+                                    class="btn btn-outline-dark"
+                                    data-toggle="modal"
+                                    data-target="#sizemodal"
+                                  >
+                                    Size: S <span class="fa fa-caret-down"></span>
+                                  </button>-->
+                            <button
+                              type="button"
+                              class="btn bag-quantity"
+                              data-toggle="modal"
+                              data-target="#quantitymodal"
+                              onclick="insertingModalContent(this,${item})"
+                            >
+                              Qty: ${bagItems[item].wanted_quantity}
+                              <span class="fa fa-caret-down"></span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 100%;" class="row product-btn mt-2 no-gutters">
+                <div class="product-remove-btn col-3">
+                  <a
+                    style="color: black;"
+                    href="#"
+                    onclick="removeBagItem(${item})"
+                    class="btn product-remove w-100"
+                  >
+                    REMOVE
+                  </a>
+                </div>
+                <div class="col-8">
+                  <button type="submit" class="btn product-wish w-100">
+                    MOVE TO WISHLIST
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+`
+
+
+           
+          }
+
+          discount = totalInit - discount_price;
+          
+
+          if(localStorage.getItem('couponDiscount')!=null){
+            couponDiscount = JSON.parse(localStorage.getItem('couponDiscount'));
+          }
+
+          orderTotal = discount_price - couponDiscount;
+
+          
+
+          total = orderTotal + deliveryCharges;
+
+          productContainer.innerHTML = content;
+      
+          $("#totalInit").html(totalInit);
+          $("#discount").html(discount);
+          $("#couponDiscount").html(couponDiscount);
+          $("#orderTotal").html(orderTotal);
+          $("#deliveryCharges").html(deliveryCharges);
+          $("#total").html(total);
+
+
+        }
+        else{
+
+        }
+
+      });
+
+
+      function removeBagItem(id){
+
+          let cart = JSON.parse(localStorage.getItem('cart'));
+          delete cart[id];
+          localStorage.setItem('cart',JSON.stringify(cart));
+          console.log(cart[id],"clicked");
+          location.reload();
+      }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,736 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'product/css/product-categorywise.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'product/css/ProductDetailStyle.css' %}">
+{% endblock %} 
+
+
+{% block content %}
+ 
+ 
+ 
+  <div class="row no-gutters filter-option">
+      <div class="col-6">
+        <button class="sort-btn">SORT</button>
+      </div>
+      <div class="col-6">
+        <button class="filter-btn" onclick="openFilter()">FILTER</button>
+      </div>
+  </div>
+
+  <div class="container-fluid mt-5 mb-5 pl-0 pr-0">
+    <div class="main-row no-gutters">
+      <div class="main-col1 filter-column">
+        <div class="row no-gutters">
+          <div class="col-12">
+            FILTERS
+            <button class="" type="button" id="clearall">CLEAR ALL</button>
+            <button class="close" type="button" id="close-filter" onclick="closeFilter()">&times;</button>
+
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-12">
+            <div class="filter-header">
+              CATEGORIES
+            </div>
+              
+            <div class="filter-content" id="categories">
+              <label class="filter-check-container" for="tshirts">
+                <input type="checkbox" id="tshirts" value="tshirts" {% if tshirts %} checked {% endif %} />
+                T-shirts
+                <span class="custom-checkbox"></span>
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="shirts" value="shirts" {% if shirts %} checked {% endif %}/>
+                Shirts
+                <span class="custom-checkbox"></span>
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="hoodies" value="hoodies" {% if hoodies %} checked {% endif %}/>
+                Hoodies
+                <span class="custom-checkbox"></span>
+              </label>
+              
+            </div>
+            
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-12">
+            <div class="filter-header">
+              PRICE
+            </div>
+            <div class="filter-content" id="price">
+              <label class="filter-check-container">
+                <input type="checkbox" id="low" value="small" />
+                <span class="custom-checkbox"></span>Rs 239 to Rs 499
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="mid" value="mid" />
+                <span class="custom-checkbox"></span>Rs 499 to Rs 999
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="high" value="high" />
+                <span class="custom-checkbox"></span>Rs 999 to Rs 1499
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-12">
+            <div class="filter-header">
+              COLOR
+            </div>
+            <div class="filter-content" id="color">
+              <label class="filter-check-container">
+                <input type="checkbox" id="Black" value="Black" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon black-icon"></span>
+                </div>
+                Black
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="Blue" value="Blue" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon blue-icon"></span>
+                </div>
+                Blue
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="Red" value="Red" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                          <span class="check-icon red-icon"></span>
+                </div>
+                  Red
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="White" value="White" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon white-icon"></span>  
+                </div>
+                White
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="Grey" value="Grey" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon grey-icon"></span>  
+                </div>
+                Grey
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="Green" value="Green" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon green-icon"></span>  
+                </div>
+                Green
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="Yellow" value="Yellow" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon yellow-icon"></span>  
+                </div>
+                Yellow
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="Orange" value="Orange" />
+                <span class="custom-checkbox"></span>
+                <div class="check-icon-container">
+                <span class="check-icon orange-icon"></span>  
+                </div>
+                Orange
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters">
+          <div class="col-12">
+            <div class="filter-header">
+              SIZE
+            </div>
+            <div class="filter-content" id="size">
+              <label class="filter-check-container">
+                <input type="checkbox" id="small" value="S" />
+                <span class="custom-checkbox"></span>S
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="medium" value="M" />
+                <span class="custom-checkbox"></span>M
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="large" value="L" />
+                <span class="custom-checkbox"></span>L
+              </label>
+              <label class="filter-check-container">
+                <input type="checkbox" id="xlarge" value="XL" />
+                <span class="custom-checkbox"></span>XL
+              </label>
+            
+            </div>
+          </div>
+      </div>
+      <div class="row onfilter-option d-flex d-lg-none">
+        <div class="col-12">
+          <button class="clear-btn" id="cancelall" >CLEAR ALL</button>
+        </div>
+      </div>
+    </div>
+
+        
+    <div class="main-col2">
+        <div class="row no-gutters">
+              <div class="col-12 sort-options">
+                <div class="mycustom-select">
+                  <select name="sort" id="sort">
+                    <option value="random" selected>Random</option>
+                    <option  value="new">Sort By: Whats New</option>
+                    <option  value="incr">Price: Low to High</option>
+                    <option value="decr">Price: Hight to Low</option>
+                    
+                  </select>
+                </div>
+              </div>
+            </div>
+          
+            <div class="insertContainer">
+
+              <!--
+              <div class="row ml-0 mr-0" >
+                
+
+                
+                
+                {% for product in products %}
+                  
+                  
+                  <div style="margin: 20px;">
+                  <div class="card">
+                    <a class="cardurl" href="{% url 'product-detail' product.id %}" style="text-decoration: none;outline: none;">
+                    <div class="card-image">
+                      <img class="model-img" src="{{ product.image }}" alt="" />
+                      <img class="back-arrow" src="{% static 'img/blackbackarrow.png' %}" alt="" />
+                      <img class="forward-arrow" src="{% static 'img/blackbackarrow.png' %}" alt="" />
+                      <div class="choices">
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="empty-star" src="{% static 'img/emptystar.png' %}" alt="" />
+                      </div>
+                    </div>
+                  </a>
+                    <div class="card-text">
+                      <p style="text-align: center;margin: 0; color: black;">{{product.name}}</p>
+                      <p style="font-size: 14px;">{{ product.category.name }}</p>
+                    </div>
+                    <div class="card-stats">
+                      
+                      {{product.price}}
+                          <span class="ml-2">Color:</span> 
+                          {% for color in product.colors %}
+                            <div class="color-grid" style="background-color:{{ color }}";>
+                            </div>
+                          {% endfor %}
+                          
+                            <div class="size-grid">
+                              Size: 
+                              {% for size in product.sizes %}
+                                {{size}} 
+                              {% endfor %} 
+                            </div>
+                         
+                        
+                
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                  
+                {% endfor %}
+                                  
+              </div>
+
+
+              <div class="paginator" style="margin-left: 20px;">
+              {% if page_obj.has_previous %}
+                  <a class="btn btn-outline-dark mb-4" onclick="callFilterFunction(1)">First</a>
+                  <a class="btn btn-outline-dark mb-4"onclick="callFilterFunction({{page_obj.previous_page_number}})">Previous</a>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                  {% if page_obj.number == i %}
+                    <a class="btn btn-dark mb-4"onclick="callFilterFunction(this)">{{ i }}</a>
+                  {% elif i > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-dark mb-4" onclick="callFilterFunction(this)">{{ i }}</a>
+                  {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                  <a class="btn btn-outline-dark mb-4" onclick="callFilterFunction(page_obj.next_page_number)">Next</a>
+                  <a class="btn btn-outline-dark mb-4" onclick="callFilterFunction(page_obj.paginator.num_pages)">Last</a>
+              {% endif %}
+            </div>   
+
+
+            --> 
+              
+            </div>
+            
+          
+    </div>
+      </div>
+      
+  </div>
+    
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+
+
+   //displaying the search box
+      let links = document.querySelectorAll(".nav-links1 li:not(:last-child)");
+          for(i=(links.length-1);i>=0;i--){
+            links[i].style.animation = `opacityFade 0.3s ease forwards ${1/(i+1)}s`;
+          }
+          $("#search").css("display","inline-block");
+
+          let xmedia = window.matchMedia("(max-width:880px)");
+          widthSearch(xmedia);
+          xmedia.addListener(widthSearch);
+
+          function widthSearch(x){
+            if(x.matches){
+              setTimeout(function(){
+                 $("#search").css("width","48vw");
+              },300);
+            }
+            else{
+              setTimeout(function(){
+                 $("#search").css("width","90%");
+              },300);
+
+            }
+          }
+
+           
+           console.log($("#search").css("display"));
+           $("#search").focus();
+           setTimeout(function(){
+            $("#search").css("padding-left","10px");
+          },500);
+           
+
+      //Custom Select
+
+  var x, i, j, l, ll, selElmnt, a, b, c;
+  /*look for any elements with the class "custom-select":*/
+  x = document.getElementsByClassName("mycustom-select");
+  l = x.length;
+  for (i = 0; i < l; i++) {
+    selElmnt = x[i].getElementsByTagName("select")[0];
+    ll = selElmnt.length;
+    /*for each element, create a new DIV that will act as the selected item:*/
+    a = document.createElement("DIV");
+    a.setAttribute("class", "select-selected");
+    a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+    x[i].appendChild(a);
+    /*for each element, create a new DIV that will contain the option list:*/
+    b = document.createElement("DIV");
+    b.setAttribute("class", "select-items select-hide");
+    for (j = 0; j < ll; j++) {
+      /*for each option in the original select element,
+      create a new DIV that will act as an option item:*/
+      c = document.createElement("DIV");
+      c.innerHTML = selElmnt.options[j].innerHTML;
+      c.addEventListener("click", function(e) {
+          /*when an item is clicked, update the original select box,
+          and the selected item:*/
+          var y, i, k, s, h, sl, yl;
+          s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+          sl = s.length;
+          h = this.parentNode.previousSibling;
+          for (i = 0; i < sl; i++) {
+            if (s.options[i].innerHTML == this.innerHTML) {
+              s.selectedIndex = i;
+              $(s).trigger("change");
+              h.innerHTML = this.innerHTML;
+              y = this.parentNode.getElementsByClassName("same-as-selected");
+              yl = y.length;
+              for (k = 0; k < yl; k++) {
+                y[k].removeAttribute("class");
+              }
+              this.setAttribute("class", "same-as-selected");
+              break;
+            }
+          }
+          h.click();
+      });
+      b.appendChild(c);
+    }
+    x[i].appendChild(b);
+    a.addEventListener("click", function(e) {
+        /*when the select box is clicked, close any other select boxes,
+        and open/close the current select box:*/
+        e.stopPropagation();
+        closeAllSelect(this);
+        this.nextSibling.classList.toggle("select-hide");
+        this.classList.toggle("select-arrow-active");
+      });
+  }
+  function closeAllSelect(elmnt) {
+    /*a function that will close all select boxes in the document,
+    except the current select box:*/
+    var x, y, i, xl, yl, arrNo = [];
+    x = document.getElementsByClassName("select-items");
+    y = document.getElementsByClassName("select-selected");
+    xl = x.length;
+    yl = y.length;
+    for (i = 0; i < yl; i++) {
+      if (elmnt == y[i]) {
+        arrNo.push(i)
+      } else {
+        y[i].classList.remove("select-arrow-active");
+      }
+    }
+    for (i = 0; i < xl; i++) {
+      if (arrNo.indexOf(i)<0) {
+        x[i].classList.add("select-hide");
+      }
+    }
+  }
+        /*if the user clicks anywhere outside the select box,
+        then close all select boxes:*/
+        document.addEventListener("click", closeAllSelect);
+
+        //custom select ends
+
+//filter new js
+  function openFilter() {
+          var filter = document.getElementsByClassName("filter-column")[0];
+          filter.style.transform = "translateX(0%)";
+          //filter.style.opacity = "1";
+        }
+  function closeFilter() {
+    var filter = document.getElementsByClassName("filter-column")[0];
+    //filter.style.opacity = "0";
+    filter.style.transform = "translateX(-100%)";
+  }
+//end
+
+    function clearAllFunction(){
+        let checked = document.querySelectorAll("input[type='checkbox']:checked");
+        for(let i=0;i<checked.length;i++) {
+          checked[i].checked = false;
+        }
+        if(checked){
+          filterajaxload(1);
+        }
+      }
+
+      var clearBtn = document.getElementById("clearall");
+      var cancelBtn = document.getElementById("cancelall");
+      clearBtn.addEventListener("click",function(){
+        clearAllFunction();
+      });
+      cancelBtn.addEventListener("click",function(){
+        clearAllFunction();
+        closeFilter();
+      });
+
+      var checkBoxes = document.querySelectorAll("input[type='checkbox']");
+
+      var filters = [];
+      for(var i=0;i<checkBoxes.length;i++) {
+        checkBoxes[i].addEventListener("change",function(){
+          filterajaxload(1);
+        });
+      }
+
+      $("#sort").on("change",function(){
+        filterajaxload(1);
+      });
+      //function on change 
+
+
+      var rowshere = document.getElementsByTagName("a");
+
+      for(var i=0;i<rowshere.length;i++) {
+        rowshere[i].addEventListener("click",function(){
+          console.log("hey i am azhar ahmad and this is a row babyyyy!!!!!!1");
+        });
+      }
+    
+      function callFilterFunction(elem){
+        console.log(typeof elem);
+        if(typeof elem == "number"){
+          filterajaxload(elem);
+        }
+        page = elem.innerHTML;
+        filterajaxload(page);
+      }
+      window.addEventListener("load",filterajaxload(1));
+
+      function filterajaxload(page){
+
+
+
+          query = $("#search").val();
+          let sort_order = $("#sort").children("option:selected").val();
+          console.log(sort_order);
+
+          var category = {
+              t_shirts:'None',
+              shirts:'None',
+              hoodies:'None'
+            };
+          var price = {
+              low:'None',
+              mid:'None',
+              high:'None'
+            }
+
+          var color = {
+            Red:"None",
+            Green:"None",
+            Blue:"None",
+            White:"None",
+            Yellow:"None",
+            Grey:"None",
+            Green:"None",
+            Black:"None"
+          }
+           var size = {
+            small:"None",
+            medium:"None",
+            large:"None",
+            xlarge:"None"
+          }
+
+          if(document.getElementById("tshirts").checked){
+            console.log("checked");
+          }
+          var categoriesContainer = document.getElementById("categories");
+          var priceContainer = document.getElementById("price");
+          var colorContainer = document.getElementById("color");
+          var sizeContainer = document.getElementById("size");
+
+          var categoriesChecked = categoriesContainer.querySelectorAll("input[type='checkbox']:checked");
+          var priceChecked = priceContainer.querySelectorAll("input[type='checkbox']:checked");
+          var colorChecked = colorContainer.querySelectorAll("input[type='checkbox']:checked");
+          var sizeChecked = sizeContainer.querySelectorAll("input[type='checkbox']:checked");
+
+
+          for(var k=0;k<categoriesChecked.length;k++) {
+            console.log(categoriesChecked[k].getAttribute("id"));
+            var id_name = categoriesChecked[k].getAttribute("id");
+
+            category[id_name] = categoriesChecked[k].value;
+        
+          }
+          for(var k=0;k<priceChecked.length;k++) {
+            console.log(priceChecked[k].getAttribute("id"));
+            var id_name = priceChecked[k].getAttribute("id");
+
+            price[id_name] = priceChecked[k].value;
+        
+          }
+          
+          for(var k=0;k<colorChecked.length;k++) {
+            console.log(colorChecked[k].getAttribute("id"));
+            var id_name = colorChecked[k].getAttribute("id");
+
+            color[id_name] = colorChecked[k].value;
+     
+          }
+
+           for(var k=0;k<sizeChecked.length;k++) {
+            console.log(sizeChecked[k].getAttribute("id"));
+            var id_name = sizeChecked[k].getAttribute("id");
+
+            size[id_name] = sizeChecked[k].value;
+         
+          }
+
+        
+          
+          $.ajax({
+            url:"{% url 'filter_products' %}",
+            method:'GET',
+            data: {'category':JSON.stringify(category),
+                    'price':JSON.stringify(price),
+                    'color':JSON.stringify(color),
+                    'size':JSON.stringify(size),
+                    'sort':sort_order,
+                    'query':query,
+                    'page':page},
+            success:function(response){
+              if(response["valid"]){
+
+               var products = response.products;
+               var page_obj = JSON.parse(response.page_obj);
+               console.log(products);
+              
+               var content = `
+               `;
+               content += `<div class="row ml-0 mr-0" >`;
+              for(i in products){
+                var link = "{% url 'product-detail' 1234 %}".replace(/1234/, products[i].id.toString());
+              console.log(link);
+              if(products[i].category == 1){
+                current_category = "TSHIRTS";
+              }
+              else if(products[i].category == 2){
+                current_category = "SHIRTS";
+              }
+              else{
+                current_category = "HOODIES";
+              }
+                content += `
+                <div style="margin: 10px;">
+                  <div class="card">
+                    <a class="cardurl" href="${link}" style="text-decoration: none;outline: none;">
+                    <div class="card-image">
+                      <img class="model-img" src="${products[i].variations[0].image1}" alt="" />
+                      <img class="back-arrow" src="{% static 'img/blackbackarrow.png' %}" alt="" />
+                      <img class="forward-arrow" src="{% static 'img/blackbackarrow.png' %}" alt="" />
+                      <div class="choices">
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="filled-star" src="{% static 'img/star.png' %}" alt="" />
+                        <img class="empty-star" src="{% static 'img/emptystar.png' %}" alt="" />
+                      </div>
+                    </div>
+                  </a>
+                    <div class="card-text">
+                      <p style="text-align: center;margin: 0; color: black;">${products[i].name}</p>
+                      <p style="font-size: 14px;">${current_category}</p>
+                    </div>
+                    <div class="card-stats">
+                          <div class="price-grid ml-2 ">
+                            ₹${products[i].price}
+                        </div>
+                          <span class="ml-2">Color:</span>`
+
+               
+
+                
+                let product_color = [];
+                for(j in products[i].variations) {
+                  if(product_color.indexOf(products[i].variations[j].color) == -1){
+                    product_color.push(products[i].variations[j].color); 
+                    current_color = products[i].variations[j].color;
+                   
+                    content += ` <div class="color-grid" style="background-color:${current_color}";>
+                            </div>`;
+                  }
+                }
+                content += `<div class="size-grid">
+                              Size: `;
+
+
+                let product_size = [];
+                for(j in products[i].variations) {
+                  console.log(products[i].variations[j].size);
+                  if(product_size.indexOf(products[i].variations[j].size) == -1){
+                    product_size.push(products[i].variations[j].size); 
+                    content += `${products[i].variations[j].size}`
+                  
+                  }
+                }
+                content += `</div>
+              
+              </div>
+            </div>
+          </div>`
+              }
+              content += `</div>`;
+
+              content += `<div class="paginator" style="margin-left: 20px;">
+                  `
+                  console.log(page_obj.has_previous)
+                  if (page_obj.has_previous){
+                  content += `<a class="btn btn-outline-dark mb-4"  onclick="callFilterFunction(${1})">First</a>
+                  <a class="btn btn-outline-dark mb-4 mr-1"  onclick="callFilterFunction(${page_obj.number -1})">Previous</a>`;
+                  }
+                  
+
+                  console.log(page_obj.num_pages);
+                  for(var i=1;i <= page_obj.num_pages;i++){
+                    if(page_obj.number == i){
+                      content += `<a class="btn btn-dark text-white mb-4 mr-1"  onclick="callFilterFunction(this)">${i}</a>`
+                    }
+                    else if(i > (page_obj.number -3) && i < (page_obj.number + 3)){
+                      content += `<a class="btn btn-outline-dark mb-4 mr-1"  onclick="callFilterFunction(this)">${i}</a>`
+                    }
+                  }
+
+                  if(page_obj.has_next){
+                    content += `<a class="btn btn-outline-dark mb-4"  onclick="callFilterFunction(${page_obj.number+1})">Next</a>
+                  <a class="btn btn-outline-dark mb-4"  onclick="callFilterFunction(${page_obj.num_pages})">Last</a>`
+                  }
+                  
+                 
+          
+          content += `</div>`
+
+              console.log(products.count);
+         
+                 
+                
+              
+             
+              var mainCol2 = document.getElementsByClassName("insertContainer")[0];
+              mainCol2.innerHTML = content;
+
+              $(window).scrollTop(0);
+              }
+              else{
+                console.log("no such pruducts")
+                
+               }
+
+            },
+            error:function(response){
+              console.log(response.valid);
+            }
+              
+          });
+          
+
+
+      }
+
+      
+
+      /*pagination click*/
+  
+        
+          
+
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  
+  AOS.init({
+    offset: 400,
+    duration: 1000,
+  });
+  
+</script>
+{% endblock %}
+

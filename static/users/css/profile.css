@@ -1,0 +1,16 @@
+.profile-col {
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.profile-col a {
+  color: black;
+  text-decoration: none;
+}
+.profile-col a:hover {
+  color: #780202;
+}
+.profile-col:hover {
+  background-color: white;
+}
+/*#eeeeee*/

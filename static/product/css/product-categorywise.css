@@ -1,0 +1,359 @@
+body{
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+  .main-row {
+    display: flex;
+  }
+  .main-col1 {
+    flex: 20%;
+  }
+  .main-col2 {
+    flex: 80%;
+    
+  }
+  .main-col2 > .row{
+    padding:0px 0px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(237, 224, 224);
+  
+  }
+  
+  .sort-options{
+    position: relative;
+    margin: 0px;
+    padding:0px;
+  }
+  .mycustom-select{
+    margin-bottom: 0px;
+    float: right;
+    margin-right: 20px;  
+  
+  }
+  @media only screen and (max-width:992px){
+    .main-col1{
+      flex:100%;
+    }
+    .main-col2{
+      flex: 100%;
+    }
+   
+    .insertContainer{
+      padding-top:10px;
+    }
+    
+  }
+  
+  @media only screen and (min-width: 992px){
+   
+    .main-col2{
+      padding:10px;
+    }
+   
+  }
+  
+  
+  /*Filter css*/
+  .filter-column {
+    border-right: 1px solid rgb(237, 224, 224);
+    padding:10px;
+    position: sticky;
+    top: -150px;
+    height: 100%;
+  }
+  
+  #clearall{
+    float:right;
+    border:none;
+    outline: none;
+  
+    color:black;
+    background-color: transparent;
+  
+  }
+  .filter-column > .row:not(:last-child) {
+    padding-top: 10px;
+    padding-left: 5px;
+    border-bottom: 1px solid rgb(237, 224, 224);
+    margin-bottom: 0px;
+  }
+  .filter-column .row:first-child {
+    font-weight: 550;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+  }
+  .filter-column .filter-header {
+    font-weight: 500;
+    margin: 10px 0px;
+  }
+  .filter-column .filter-check-container {
+    display: block;
+    padding-left: 22px;
+    position: relative;
+  }
+  .filter-column .filter-check-container input {
+    width: 0px;
+    height: 0px;
+  }
+  .filter-column .filter-check-container .custom-checkbox {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 17px;
+    height: 17px;
+    border: 1px solid grey;
+  }
+  .filter-column .filter-check-container .custom-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    height: 10px;
+    width: 5px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    display: none;
+  }
+  .filter-column .filter-check-container input:checked ~ .custom-checkbox::after {
+    display: block;
+  }
+  .filter-column .filter-check-container input:checked ~ .custom-checkbox {
+    background-color: black;
+  }
+  
+  .filter-option {
+    position: fixed;
+    bottom: 0px;
+    z-index: 98;
+    width: 100%;
+    height: 0%;
+  }
+  .filter-option button {
+    width: 100%;
+    border: none;
+    height: 55px;
+    outline: none;
+  }
+  .option-container {
+    width: 100%;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+  }
+  .onfilter-option {
+    padding: 0px;
+    background-color: blue;
+    z-index: 97;
+    transition: 0.4s ease;
+  }
+  .onfilter-option .col-12 {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  .onfilter-option button {
+    float: left;
+    width: 100%;
+    height: 55px;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    outline: none;
+  }
+  .clear-btn{
+    color: black;
+    background-color: white;
+    outline: none;
+    }
+  .sort-btn {
+    color: black;
+    background-color: white;
+    border:none;
+   
+  }
+  .filter-btn {
+    color: white;
+    background-color: black;
+    border: none;
+    
+  }
+  
+  #close-filter{
+    border: none;
+    outline: none;
+    color:black;
+    
+  }
+  /*
+  @media only screen and (max-width: 992px) {
+    .filter-column {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      width: 100%;
+      transition: .4s;
+      height: 0%;
+      opacity: 1;
+      overflow: auto;
+      z-index: 99;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      background-color: white;
+    }
+    .filter-option {
+      height: auto;
+    }
+  }
+  */
+  /* new filter css*/
+  @media only screen and (min-width: 993px){
+    #close-filter{
+      display: none;
+    }
+    #clearall{
+      display: block;
+    }
+  }
+  @media only screen and (max-width: 992px) {
+    .filter-column {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      width: 50%;
+      transition: .4s;
+      height: 100%;
+      opacity: 1;
+      transform: translateX(-100%);
+      overflow: auto;
+      z-index: 99;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      background-color: white;
+    }
+    .filter-option {
+      height: auto;
+    }
+    #close-filter{
+      display: block;
+    }
+    #clearall{
+      display: none;
+    }
+  }
+  
+  .check-icon-container{
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+    height: 14px;
+    width:14px;
+  }
+  .check-icon{
+    display: inline-block;
+    height:14px;
+    width:14px;
+    border:1px solid grey;
+    border-radius: 100%;
+    position: absolute;
+    top:1px;
+  }
+  
+  .check-icon.black-icon{
+    background-color: black;
+  }
+  .check-icon.blue-icon{
+    background-color: blue;
+  }
+  .check-icon.yellow-icon{
+    background-color: yellow;
+  }
+  .check-icon.green-icon{
+    background-color: green;
+  }
+  .check-icon.red-icon{
+    background-color: red;
+  }
+  .check-icon.grey-icon{
+    background-color: grey;
+  }
+  .check-icon.white-icon{
+    background-color: white;
+  }
+  .check-icon.orange-icon{
+    background-color: orange;
+  }
+  
+  
+  /*filter end*/
+  
+  
+  
+  /*Custom select */
+  .mycustom-select{
+    position:relative;
+    width:230px;
+    font-family: Arial;
+    font-size: 14px;
+  }
+  
+  .mycustom-select select{
+    display:none;
+    border:1px solid rgb(237, 224, 224);
+  }
+  
+  
+  .select-selected {
+    background-color: white;
+    border: 1px solid rgb(237, 224, 224);
+  }
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  .select-selected::after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  
+  .select-items div,.select-selected {
+    color: black;
+    padding: 8px 16px;
+   /* border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;*/
+    cursor: pointer;
+   
+    user-select: none;
+  }
+  
+  .select-items {
+    border-right:1px solid rgb(237, 224, 224);
+    border-left:1px solid rgb(237, 224, 224);
+    border-bottom:1px solid rgb(237, 224, 224);
+  
+    position: absolute;
+    width:100%;
+    z-index: 99;
+    background-color: white;
+  }
+  
+  .select-items div:hover {
+    background-color: rgb(237, 224, 224);
+    color:black;
+  }
+  .same-as-selected{
+     background-color: rgb(237, 224, 224);
+      color:black !important;
+  }
+  .select-hide {
+    display: none;
+  }

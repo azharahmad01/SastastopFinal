@@ -1,0 +1,135 @@
+{% extends "NavAndFooter/Nav_Footer.html" %}
+{% load static %}
+{% load widget_tweaks %} 
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block scripts %}   
+<section class="parent">
+    <!-- Container Starts -->
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+  <div class="container">
+    
+    <!-- Sign up Container -->
+    
+    <div class="form-container signup-container">
+      
+      <form method="POST" action="#">
+        {% csrf_token %}
+     
+        <p>Create Account</p>
+        <div class="socialmedia">
+          <a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="social"><img src="{% static 'img/fb.png' %}" alt="" /></a>
+          <a href="#" class="social"
+            ><img src="{% static 'img/google.png' %}" alt=""
+          /></a>
+        </div>
+        <span>or Create your Account using your email</span>
+        {% render_field form.username class="input" placeholder="Username" %}
+        {% for error in form.username.errors %} 
+        <div class="signup-form-error-username">
+          <p style=" color: RED;
+          font-family: 'poppins'; 
+          font-size: 8px; ">*{{ error }}</p>
+        </div>
+        {% endfor %}
+        {% render_field form.email class="input" placeholder="Email" %}
+        
+        {% for error in form.email.errors %} 
+        <div class="signup-form-error-email">
+          <p style=" color: RED;
+          font-family: 'poppins'; 
+          font-size: 8px; ">*{{ error }}</p>
+        </div>
+        {% endfor %}
+        {% render_field form.password1 class="input" placeholder="Password" %}
+        
+        {% render_field form.password2 class="input" placeholder="Confirm Password" %}
+   
+        {% for error in form.password2.errors %} 
+        <div class="signup-form-error-password">
+          <p style=" color: RED;
+          font-family: 'poppins'; 
+          font-size: 8px; ">*{{ error }}</p>
+        </div>
+        {% endfor %}
+     
+
+        <button type="submit" name="submit" value="sign_up" style="margin-top: 10px;">Sign up</button>
+        <a class="arrow" id="signuparrownav" href="#"
+        title="Click to Sign in"  ><img src="{% static 'img/blackbackarrow.png' %}" alt=""
+        /></a>
+        
+      </form>
+     
+    </div>
+    <!-- Signup container end -->
+    <!-- Signin Container  -->
+   
+    <div class="form-container signin-container">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="signin-form-error-message" style="background: none;">
+            *{{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      <form method="POST" action="#">
+        {% csrf_token %}
+        <p>Sign in</p>
+        <div class="socialmedia">
+          <a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="social"><img src="{% static 'img/fb.png' %}" alt="" /></a>
+          <a href="{% provider_login_url 'google' method='js_sdk' %}" class="social"
+            ><img src="{% static 'img/google.png' %}" alt=""
+          /></a>
+        </div>
+        <span>or use your Email</span>
+        
+        <input type="text" placeholder="Username" name="username" />
+        <input type="password" placeholder="Password" name="password" />
+      
+        <a href="{% url 'password_reset' %}">forget password?</a>
+        <button type="submit" name="submit" value='sign_in'>Sign in</button>
+        <a class="arrow" id="signinarrownav" href="#"
+        title="Click to Sign up"
+          ><img src="{% static 'img/blackbackarrow.png' %}" alt=""
+        /></a>
+      </form>
+    </div>
+    <!-- Signin Container end -->
+    <!-- Image Container Slide -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Already have an account?</h1>
+          <p>Signin to purchase</p>
+          <button class="button" id="signin" style="margin-top: 20px;">
+            Sign in
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Sign up to start shopping</h1>
+          <p>
+            Happy shopping!</p>
+            <button class="button" id="signup" style="margin-top: 20px;">
+              Sign up
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Image Container Slide Ends -->
+  </div>
+  <!-- Container ends -->
+</section>
+{{ block.super }}
+<script src="{% static 'users/js/Account.js' %}"></script>
+{% endblock %}
+
+    

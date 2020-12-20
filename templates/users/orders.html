@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block styles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/OrderHistoryStyle.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="background-nav">
+  </div>
+   <div class="container mt-3 mb-5">
+      <div class="row">
+        <nav aria-labelledby="breadcrumb">
+          <ol class="breadcrumb profile-breadcrumb">
+            <li class="breadcrumb-item"><a  href="{% url 'profile' %}">Profile</a></li>
+            <li class="breadcrumb-item active"><a>Orders</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row mb-4">
+        <div style="font-size: 25px; font-weight: 400;" class="col-12">
+          Your Orders
+        </div>
+      </div>
+      <div class="row address-row">
+        {% for order in orderItems %}
+          <div class="col-12">
+            <section class="order-box mt-3">
+            <div class="inner-box">
+              
+              <div class="status active">
+                <!-- <img src="{% static 'img/greencircle.png' %}" alt="" /> -->
+                <p>OrderID :{{ order.order.id }}</p>
+              </div>
+              <div class="indicator"></div>
+              <div class="column-orders">
+                <div class="orders">
+                  <!-- <h1>+1</h1>
+                  <div class="quantity"></div> -->
+      
+                  <img src="{{ order.product_detail.image1.url }}" alt="" />
+                  
+                 
+                  <div class="description">
+                    <span>{{ order.order.created|date:"F j, Y" }}</span>
+                    <p>7am - 8pm</p>
+                  </div>
+                  
+                </div>
+                <!-- <div class="orders">
+                  <img src="{% static 'img/girl8.jpg' %}" alt="" />
+                  <div class="description">
+                    <span>Expected on Mon, 5 July</span>
+                    <p>7am - 8pm</p>
+                  </div>
+                </div> -->
+              </div>
+              <div class="column-button">
+                <button class="btn-a">Track Order</button>
+                <button class="btn-b" type="submit" name="submit"><a class="btn-b-link" href="{% url 'order-items' order.order.id %}">View order details</a></button>
+                <button class="btn-c">Get invoice</button>
+                <button class="btn-d">Edit Order</button>
+              </div>
+            </div>
+          </section>
+            <!-- <a style="color:black;text-decoration: none;" href="{% url 'order-items' order.id %}">
+              <div class="address-box p-3">
+              <span style="font-size: 14px;"
+                >{{order.address.address1}}<br />
+                {{order.address.address2}}<br />
+                {{address.city}} {{address.postcode}}<br />
+                INDIA
+                <br
+              />
+                {{order.address.phone}}
+            </span>
+
+            </div>
+            </a> -->
+          </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+
+{% endblock %}
+

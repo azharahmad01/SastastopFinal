@@ -1,0 +1,265 @@
+.cart-heading {
+  font-size: 20px;
+}
+.product-container > :first-child {
+  border-top: 1px solid #e5e7eb;
+}
+.bag-product-detail {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  border-radius: 0px;
+  background-color: white;
+  color: black;
+}
+.bag-product-detail .bag-quantity {
+  color: black;
+  outline: none;
+  background-color: white;
+  border: 1px solid black;
+}
+.bag-product-detail .bag-quantity:hover {
+  color: white;
+  background-color: black;
+
+}
+.bag-product-detail img {
+  height: 160px;
+  width: 250px;
+}
+.product-remove-btn {
+  margin-right: 0px;
+}
+.product-remove-btn {
+  background-color: #f4f6f9;
+  border-radius: 0%;
+  outline: none;
+}
+.product-remove {
+  border-right: 1px solid #e5e7eb;
+
+  background-color: white;
+  border-radius: 0%;
+  outline: none;
+}
+.product-wish {
+  background-color: white;
+
+  color: black;
+}
+.product-btn {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+@media only screen and (max-width: 767px){
+  .order-column{
+    position: fixed;
+    bottom:0px;
+    z-index: 1;
+  }
+  .order-column .row > .col-12{
+    margin:0px;
+    padding: 0px;
+  }
+  .alert-container{
+    font-size: 14px;
+  }
+  .order-column {
+
+    border-top:2px solid rgb(130, 129, 129);
+  }
+  
+
+}
+
+/* coupon card */
+.card {
+  border-radius: 0%;
+  border: 1px solid #e5e7eb;
+}
+.bag-coupon-card .col-12 {
+  color: black;
+  font-size: 15px;
+  font-weight: 100;
+  margin-top: 4px;
+  background-color: white;
+}
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.coupon-btn {
+  background: black;
+  color: white;
+}
+.coupon-btn:hover {
+  color: white;
+}
+
+#available-or-not {
+  color: #b92b27;
+}
+
+
+
+/*modifying bag */
+.bag-list {
+  background-color: #f1f3f6;
+}
+
+.close{
+  color:white;
+}
+.close:hover{
+  color:white;
+}
+.modal-content{
+  animation: animateTop 0.4s forwards;
+}
+
+@keyframes animateTop {
+  from {top:-300px; opacity:0}
+  to {top:13vh; opacity:1}
+}
+
+#couponmodal .modal-header{
+  background-color: black;
+  color:white;
+}
+.coupon-form{
+  width:100%;
+}
+.coupon-form .input-group input{
+  width: 100%;
+  padding:8px 10px;
+  border:2px solid #e5e7eb;
+  border-radius:5px;
+  outline: none;
+}
+.coupon-form .coupon-options{
+  margin-top: 60px;
+}
+
+.coupon-options button{
+  width:50%;
+  padding:10px;
+  border:none;
+  outline: none;
+ 
+}
+.coupon-options .cancel-coupon{
+  background-color: white;
+  color:black;
+  border:1px solid #e5e7eb;
+
+}
+.coupon-options .submit-coupon{
+  background-color: black;
+  color:white;
+}
+
+
+#quantitymodal .modal-header{
+  background-color: black;
+  color:white;
+}
+
+
+
+/* not available notification */
+#available-or-not{
+  display: inline-block;
+  background-color: #F07138;
+  width:500px;
+  height:40px;
+  color:white;
+}
+/*end*/
+
+.alert-container{
+  display: none;
+  position: fixed;
+  bottom:4vh;
+  width:100%;
+ z-index: 999;
+ padding-left:20vw;
+ padding-right: 20vw;
+}
+.alert-container .row{
+height: 50px;
+  z-index: 999;
+}
+.alert-container .col-12{
+  text-align: center;
+  color:white;
+}
+.alert-container  .alert-content{
+  display: inline-block;
+  padding: 10px;
+  z-index: 999;
+  background-color: black;
+  vertical-align: baseline;
+  letter-spacing: 0.1em;
+
+}
+
+@keyframes animateBottom{
+  0%{
+    bottom:-300px;
+    opacity: 0;
+  }
+  100%{
+    bottom:4vh;
+    opacity: 1;
+  }
+}
+@keyframes animateToBottom{
+   0%{
+    bottom:4vh;
+    opacity: 1;
+  }
+  100%{
+    bottom:-300px;
+    opacity: 0;
+  }
+} 
+
+
+/*breadcrumb*/
+.profile-breadcrumb {
+  font-size: 23px;
+  background-color: #f4f6f9;
+}
+@media only screen and (max-width: 767px){
+  .profile-breadcrumb{
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 500px){
+  .profile-breadcrumb{
+    font-size: 16px;
+  }
+}
+.profile-breadcrumb li a{
+  text-decoration: none;
+  color:rgb(108, 102, 102);;
+}
+
+.profile-breadcrumb .active a{
+  color:black;
+}
+/*end*/
+
+.bag-product-detail .cut{
+  position: relative;
+  display: inline-block;
+  padding: 3px;
+  font-size: 17px;
+  font-style: italic;
+}
+
+
+

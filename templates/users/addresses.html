@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/addresses.css' %}">
+{% endblock %} 
+
+{% block content %}
+<div class="background-nav">
+  </div>
+
+
+  {% if u_form %}
+    <div id="update-form" class="modal">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-header">
+                EDIT DETAILS
+                <a type="button" class="close" href="{% url 'addresses' %}" >
+                  &times;
+                </a>
+              </div>
+              <div class="modal-body">
+                <form method="POST" id="address-form" action="{% url 'update-address' address_id %}" autocomplete="off">
+                  {% csrf_token %}
+                  <div class="form-content">
+                    <div class="input-group">
+                      {% render_field u_form.name id='name' required='true' autocomplete='off' placeholder='Name' %}
+                      
+                      {% render_field u_form.phone id='phone' required='true' autocomplete='off' placeholder='10-digit mobile number'%}
+                    
+                    </div>
+                    <!--<div class="input-group">
+                          <input type="number" placeholder="Pincode" id="pincode" />
+                          
+                        </div>-->
+                    <div class="input-group">
+                      {% render_field u_form.address1 id='address1' required='true' rows='2' autocomplete='off' placeholder='Address1' %}
+                     
+                    </div>
+                    <div class="input-group">
+                      {% render_field u_form.address2 id='address2' required='true' rows='2' autocomplete='off' placeholder='Address2' %}
+                     
+                    </div>
+                    <div class="input-group">
+                      {% render_field u_form.city id='city' required='true'  autocomplete='off' placeholder='City/District/Town' %}
+                     
+                      {% render_field u_form.postcode id='postcode' required='true' autocomplete='off' placeholder='Pincode' %}
+                      
+                    </div>
+
+                    <div class="input-group">
+                      <button type="submit" class="address-submit">EDIT</button>
+
+                      <a type="button" class="address-cancel" href="{% url 'addresses' %}">
+                        CANCEL
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    {% endif %}
+
+
+   <div id="form-modal" class="modal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              FILL THE DETAILS
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST" id="address-form" action="{% url 'create-address' %}" autocomplete="off">
+                {% csrf_token %}
+                <div class="form-content">
+                  <div class="input-group">
+                    {% render_field form.name id='name' required='true' autocomplete='off' placeholder='Name' %}
+                    
+                    {% render_field form.phone id='phone' required='true' autocomplete='off' placeholder='10-digit mobile number'%}
+                  
+                  </div>
+                  <!--<div class="input-group">
+                        <input type="number" placeholder="Pincode" id="pincode" />
+                        
+                      </div>-->
+                  <div class="input-group">
+                    {% render_field form.address1 id='address1' required='true' rows='2' autocomplete='off' placeholder='Address1' %}
+                   
+                  </div>
+                  <div class="input-group">
+                    {% render_field form.address2 id='address2' required='true' rows='2' autocomplete='off' placeholder='Address2' %}
+                   
+                  </div>
+                  <div class="input-group">
+                    {% render_field form.city id='city' required='true'  autocomplete='off' placeholder='City/District/Town' %}
+                   
+                    {% render_field form.postcode id='postcode' required='true' autocomplete='off' placeholder='Pincode' %}
+                    
+                  </div>
+
+                  <div class="input-group">
+                    <button type="submit" class="address-submit">ADD</button>
+
+                    <button type="button" class="address-cancel" data-dismiss="modal">
+                      CANCEL
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   <div class="container mt-4 mb-5">
+      <div class="row px-3 p-md-0">
+        <nav aria-labelledby="breadcrumb">
+          <ol style="background-color: white" class="breadcrumb profile-breadcrumb">
+            <li class="breadcrumb-item"><a  href="{% url 'profile' %}">Profile</a></li>
+            <li class="breadcrumb-item active"><a>Addresses</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row mb-4 px-3 p-md-0">
+        <div style="font-size: 25px; font-weight: 400;" class="col-12">
+          Your Addresses
+        </div>
+      </div>
+      <div class="row address-row px-3 p-md-0">
+        <div class="col-12 col-sm-6 col-lg-4 mt-4 mt-md-3">
+          <a href="#" 
+        class=""
+        data-toggle="modal"
+        data-target="#form-modal">
+            <div style="background-color: white;" class="address-box main-box d-none d-sm-block p-3">
+            <div class="container-add-address">
+              <img width="60px" src="{% static 'img/iconplusblack2.png' %}" alt="" />
+              <br />
+              <span class="address-links">Add Address</span>
+            </div>
+          </div>
+          </a>
+          <a
+            style="color: white; background-color: black;"
+            class="btn d-block d-sm-none"
+            href="#"
+            class=""
+        data-toggle="modal"
+        data-target="#form-modal"
+            >Add Address</a
+          >
+        </div>
+        {% for address in addresses %}
+          <div class="col-12 col-sm-6 col-lg-4 mt-4 mt-md-3">
+            <div class="address-box p-3  ">
+              <span style="display:inline-block;font-size: 14px;line-height: 1.5em;"
+                >{{address.address1}}<br />
+                {{address.address2}}
+                <br />
+                {{address.city}} {{address.postcode}}<br />
+                INDIA
+                <br
+              />
+                {{address.phone}}
+            </span>
+
+              <div class="mt-4 edit-links">
+                <a class="btn address-links" href="{% url 'get-update-form' address.id  %}" >Edit</a>
+              </div>
+              <div class="delete-btn">
+                <a style="color:black;" href="{% url 'delete-address' address.id %}"><span class="fa fa-trash delete-icon"></span></a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+  }
+
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+
+  console.log(window.location.href)
+
+  let loc= window.location.href;
+
+  let pos;
+  let count = 0;
+  for(var i=(loc.length-1);i>=0;i--){
+    console.log(loc[i])
+    if(loc[i] == '/')
+    {
+      count++;
+    }
+    if(loc[i] == '/' && count == 2){
+
+      pos = i;
+      break;
+    }
+  }
+  loc = loc.slice(0,pos);
+  count = 0;
+  for(var i=0;i<loc.length;i++){
+    console.log(loc[i])
+    if(loc[i] == '/')
+    {
+      count++;
+    }
+    if(loc[i] == '/' && count == 3){
+
+      pos = i;
+      break;
+    }
+  }
+
+  loc = loc.slice(i+1,loc.length);
+
+  
+  console.log(loc)
+
+  if(loc == 'account/profile/addresses/update'){
+    $("#update-form").modal("toggle");
+  }
+
+  
+
+</script>
+{% endblock javascript %}
+

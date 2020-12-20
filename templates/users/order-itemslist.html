@@ -1,0 +1,117 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block styles %} 
+
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/orderList.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="background-nav"></div>
+
+<div class="container bag-list mt-3 mb-5">
+  <div class="row">
+    <nav aria-labelledby="breadcrumb">
+      <ol class="breadcrumb profile-breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'profile' %}">Profile</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'orders' %}">Orders</a></li>
+        <li class="breadcrumb-item active"><a>Items</a></li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section_calc">
+	{% for dict in items|slice:":1" %}
+		
+	<div class="side-nav ml-3">
+	  <h1>Account</h1>
+	  <p>{{ dict.user }}</p>
+	
+	</div>
+	<hr />
+	<div class="vertical"></div>
+	<div class="calculation">
+	  <div class="box1">
+		<p>Placed on : <b>{{dict.date|date:"F j, Y"}}</b></p>
+		<p>Order no : <b>{{ dict.id }}</b></p>
+		<p>Price details : <hr class="box1-hr"/></p>
+		<div class="bill">
+			<p>MRP : <b class="b1">₹{{dict.total}}</b></p>
+			<p>GST : <b class="b2">₹32.30</b></p>
+			<p>Cash on delivery : <b class="b3">₹{{dict.total|add:32.30}}</b></p>
+			<p style="color: black; font-weight: 900;font-size: 14px;">TOTAL : <b class="b4">₹{{dict.total|add:32.30}}</b></p>
+			<hr class="box1-hr2"/>
+		</div>
+		<hr class="box1-hr3"/>
+	  </div>
+	  
+	  <div class="box2">
+		  <p>Updates sent to:</p>
+		  <div class="phn">
+			  <img src="{% static 'img/phone.png' %}" alt="">
+			  <p style="color: black;">: {{dict.phone}}</p>
+		  </div>
+		  <div class="email">
+			  <img src="{% static 'img/mail.png' %}" alt="">
+			  <p style="color: black;">: {{dict.email}}</p>
+		  </div>
+		  <hr class="box2-hr"/>
+	  </div>
+	  <div class="box3">
+		  <p>Shipping Address: </p>
+		  <p style="color: black; font-weight: 900; font-size: 14px;">{{dict.user}}</p>
+		  <p>{{dict.address}} </p>
+		  <p>{{dict.city}}</p>
+		  <p>{{dict.pincode}}</p>
+		  <hr class="box3-hr" />
+	  </div>
+	  <div class="box4">
+		  <p>Payment option:</p>
+		  <p style="color: black;"><b>Credit Card</b></p>
+	  </div>
+	  
+	</div>
+		
+	{% endfor %}
+  </section>
+  <div class="ordered-items-box">
+	<p style="font-weight: 900; font-size: 20px; margin-left: 20px; color: black;">Items in this Order</p>
+	{% for item in items|slice:"1:" %}
+		{% for itemDetail in item %}
+	<div class="ordered-item">
+		<img src="{{ itemDetail.product_detail.image1.url }}" alt="">
+		<div class="ordered-item-details">
+			<h4 style="color: black; font-size: 12px; margin-top: 10px;">H&M</h4>
+			<p>{{itemDetail.product_detail.product.name}}</p>
+			<div class="size-qty">
+				<p>{{itemDetail.product_detail.size}}</p>
+				<p id="qty">Qty: {{itemDetail.quantity}}</p>
+			</div>
+			<p style="color: black; font-weight: 900; font-size: 15px;">₹ {{itemDetail.product_detail.product.price}}</p>
+			
+		</div>
+			
+	</div>
+	{% endfor %}
+	
+		
+	<!-- <div class="ordered-item">
+		<img src="./img/girl8.jpg" alt="">
+		<div class="ordered-item-details">
+			<h4 style="color: black; font-size: 15px;">Zara</h4>
+			<p>Classic Summer Wear Tshirt</p>
+			<div class="size-qty">
+				<p>Size : S</p>
+				<div class="ordered-item-vertical"></div>
+				<p id="qty">Qty: 3</p>
+			</div>
+			<p style="color: black; font-weight: 900; font-size: 15px;">₹1200.00</p>
+			<p style="color: black; font-weight: 900; font-size: 13px;">Delivered</p>
+		</div>
+	</div> -->
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

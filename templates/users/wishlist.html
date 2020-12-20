@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %} 
+
+{% block content %}
+
+<div class="container pt-2">
+    <h2 class="card-title pl-2 pt-2 "><i class="fas fa-dolly-flatbed"></i>  My Wishlist ({{ numProducts }})</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col col-md-12" style="padding: 10px 10px 10px 10px;">
+            <div class="card" style="width: 70rem;padding:10px;">
+            
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img class="card-img-left" alt="image" height="100px" width="100px" src="{{product.products.variations.first.image1.url}}">
+                        </div>
+                        <div class="col-sm-auto ml-1">
+                            <h5 class="card-title pl-1">
+                                <a href="{% url 'product-detail' product.products.id %}"
+                                style="color:black;"> 
+                                    {{product.products.name}}
+                                </a>
+                            </h5>
+                            <p class="card-text pl-2">Product_id {{ product.products.id}}</p>
+                            <a href="#" class="btn btn-primary  btn-sm ml-auto">Buy Now</a>
+                        </div>
+                    </div>
+                
+                </div>
+            </div> 
+        </div>
+            {% endfor %}
+        
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+<!-- 
+$("#add_to_wishlist").click(function(){
+
+    $.ajax({
+        type : 'POST',
+        url = "{% url 'add_to_wishlist' product.id %}",
+        success: function(response){
+            if(response["valid"]){
+                console..log("Added to wishlist")
+            }
+            else{
+                console.log("Not added to wishlist : Hit the net first")
+            }
+        },
+    });
+
+}); -->

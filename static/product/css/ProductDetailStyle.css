@@ -1,0 +1,250 @@
+
+.Gender {
+  margin: auto;
+  width: 80%;
+  margin-bottom: 50px;
+}
+.Gender span {
+  margin-top: 50px;
+  font-family: "lobster";
+  font-size: 5rem;
+}
+
+.card {
+  grid-area: "cards";
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 320px;
+  grid-template-rows: 210px 180px 1fr;
+  grid-template-areas: "image" "text" "stats";
+  background-color: white;
+  color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 5px 5px 15px grey;
+  text-align: center;
+  transition: 0.6s ease;
+  
+}
+.card-image {
+  justify-content: center;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: auto;
+  height: 350px;
+  width: 100%;
+  position: relative;
+}
+
+.card-image .model-img {
+  width: 100%;
+  /* margin: auto; */
+  height: 80%;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+  color: white;
+}
+.card-image .back-arrow {
+  position: absolute;
+  height: 5%;
+  width: 5%;
+  top: 40%;
+  left: 10px;
+  mix-blend-mode: darken;
+}
+.card-image .forward-arrow {
+  position: absolute;
+  height: 5%;
+  width: 5%;
+  top: 40%;
+  right: 10px;
+  mix-blend-mode: darken;
+  transform: scaleX(-1);
+}
+.card-image .choices {
+  position: absolute;
+  top: 80%;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-image .filled-star {
+  height: 50%;
+  object-fit: cover;
+}
+.card-image .empty-star {
+  height: 50%;
+  object-fit: cover;
+}
+
+.card-text {
+  grid-area: text;
+  margin-top: 110px;
+  pointer-events: all;
+  margin-bottom: 5px;
+
+  /* background-color: aqua; */
+}
+.card-text h2 {
+  font-family: "Lobster", cursive;
+}
+.card-text p {
+  color: grey;
+}
+.card-stats {
+  grid-area: stats;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  align-items: center;
+  
+  color: black;
+
+}
+.card-stats .color-grid {
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+  margin-left: 2px;
+  border-radius: 100%;
+  border: 1px solid grey;
+}
+.card-stats .size-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 20px;
+}
+.card-stats .price-grid {
+  color: rgb(16, 79, 215);
+  margin-right: 5px;
+  font-weight: 900;
+}
+.card-stats .stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: grey;
+}
+.card-stats .stats .value {
+  font-size: 20px;
+  font-weight: 200px;
+}
+.card-stats .stats .type {
+  font-size: 10px;
+}
+
+.card:hover {
+  transform: scale(1.06);
+
+}
+
+.page-transition {
+  position: relative;
+  margin: auto;
+  width: 200px;
+  height: 10vh;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.page-transition .back {
+  width: 8%;
+  object-fit: cover;
+  position: absolute;
+  top: 25%;
+  left: 0;
+  mix-blend-mode: darken;
+}
+.page-transition .forward {
+  width: 8%;
+  object-fit: cover;
+  position: absolute;
+  top: 25%;
+  right: 10%;
+  mix-blend-mode: darken;
+  transform: scale(-1);
+}
+.page-transition .circle {
+  width: 8%;
+  object-fit: cover;
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  mix-blend-mode: darken;
+}
+
+@media only screen and (max-width: 1400px){
+
+  .Gender span {
+    margin-top: 50px;
+    font-family: "lobster";
+    font-size: 3rem;
+  }
+  .card {
+    grid-template-columns: 270px;
+    margin: 10px;
+  }
+
+  
+}
+@media only screen and (max-width: 960px){
+
+  .Gender span {
+    margin-top: 50px;
+    font-family: "lobster";
+    font-size: 3rem;
+  }
+  .card {
+    grid-template-columns: 260px;
+    margin: 6px;
+    font-size: 14px;
+  }
+
+  
+}
+@media only screen and (max-width: 878px){
+
+  .Gender span {
+    margin-top: 50px;
+    font-family: "lobster";
+    font-size: 3rem;
+  }
+  .card {
+    grid-template-columns: 230px;
+    margin: 2px;
+    font-size: 14px;
+  }
+
+  
+}
+@media only screen and (max-width: 600px){
+
+  .Gender span {
+    margin-top: 50px;
+    font-family: "lobster";
+    font-size: 3rem;
+  }
+  .card {
+    grid-template-columns: 290px;
+    margin-left: 35px;
+    font-size: 16px;
+  }
+
+  
+}
+
+
+

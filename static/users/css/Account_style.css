@@ -1,0 +1,763 @@
+{% load static %}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f6f5f7;
+  position: relative;
+  min-height: 130vh;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 12px 40px;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  transition: 0.6s;
+  background: black;
+  z-index: 30000;
+}
+nav .logo {
+  /* position: relative; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  /* transition: 0.6s; */
+}
+nav .logo a {
+  text-decoration: none;
+  color: white;
+}
+nav .logo h1 {
+  color: white;
+  transition: 0.6s;
+}
+nav .logo img {
+  width: 20%;
+  object-fit: cover;
+  transition: 0.6s;
+}
+
+nav .nav-links {
+  flex: 1;
+  display: flex;
+  color: white;
+  list-style: none;
+  justify-content: space-evenly;
+  align-items: center;
+}
+nav .nav-links li a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+.nav-image {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+nav .heart {
+  cursor: pointer;
+  width: 12%;
+  object-fit: cover;
+}
+nav .usermale {
+  cursor: pointer;
+  width: 12%;
+  object-fit: cover;
+}
+nav .userfemale {
+  cursor: pointer;
+  width: 15%;
+  object-fit: cover;
+}
+nav .cart {
+  cursor: pointer;
+  width: 12%;
+  object-fit: cover;
+}
+.dropdown {
+  position: absolute;
+  top: 9%;
+  right: 0%;
+  height: 250px;
+  width: 200px;
+  background: white;
+  list-style: none;
+  border-radius: 12px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 14px 28px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10%);
+  transition: all 0.4s;
+}
+.dropdown li a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: black;
+  width: 100%;
+}
+
+.dropdown li {
+  height: 100%;
+  width: 100%;
+}
+
+.dropdownactive {
+  position: fixed;
+  opacity: 1;
+  transform: translateY(0%);
+  pointer-events: all;
+  z-index: 10000;
+}
+.dropdown li a:hover {
+  background: black;
+  border-radius: 5px;
+  color: white;
+}
+.burger {
+  display: none;
+  /* justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+}
+.burger div {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+}
+.line2 {
+  margin-top: 5px;
+}
+.line3 {
+  margin-top: 5px;
+}
+
+.parent {
+  margin: auto;
+  min-height: 600px;
+  height: 80vh;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.container {
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+.form-container form {
+  width: 100%;
+  height: 100%;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.form-container form p {
+  font-weight: bold;
+  font-family: "lobster";
+  font-size: 2.5rem;
+  margin: 10px;
+}
+.form-container form span {
+  margin: 20px;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: transform 0.4s ease-in-out;
+}
+button:active {
+  transform: scale(0.2);
+}
+button:focus {
+  outline: none;
+}
+.form-container .arrow {
+  display: none;
+}
+.form-container form .socialmedia a {
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 50%;
+  /* padding: 5px 5px; */
+  margin: 0 10px;
+  height: 60px;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+}
+.form-container .scoialmedia img {
+  height: 100%;
+  object-fit: cover;
+}
+.form-container a {
+  text-decoration: none;
+  color: red;
+  margin: 10px;
+}
+.form-container input {
+  background: #eee;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px 0px;
+  width: 100%;
+}
+.form-container {
+  position: absolute;
+  /* background-color: aqua; */
+  width: 50%;
+  top: 0;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+}
+.signin-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+.signup-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+  color: white;
+}
+
+.overlay {
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  background: url(../../img/hanger4.jpg);
+  background-size: cover;
+  /* background-color: black; */
+  transition: transform 0.6s ease-in-out;
+  z-index: 50;
+}
+
+.overlay::after {
+  content: "";
+  height: 100%;
+  width: 200%;
+  background: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.2;
+}
+
+.overlay-panel {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  background: black;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+footer h1 {
+  margin-top: 10px;
+  font-family: "Lobster";
+  letter-spacing: 2px;
+}
+footer .social {
+  height: 50%;
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.social img {
+  height: 50%;
+  object-fit: cover;
+}
+.alert {
+  margin-top: 200px;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.alert-success {
+  background: #d4edda;
+  color: #255824;
+}
+.alert-debug {
+  background: #f8d7da;
+  color: #721c24;
+  margin-top: 5px;
+}
+.alert-danger {
+  background: #f8d7da;
+  color: #721c24;
+  margin-top: 5px;
+}
+#error-danger {
+  width: 100%;
+  
+  text-align: left;
+  
+}
+#error-danger p {
+  color: RED;
+  font-family: 'poppins'; 
+  font-size: 12px; 
+  margin: 0;
+  padding: 0;
+  margin-right: 80px;
+}
+
+#error-danger-reset-email {
+  width: 100%;
+  background: none;
+  position: absolute;
+  top: 55%;
+ 
+  text-align: left;
+  margin-left: 100px;
+
+}
+#error-danger-reset-email p{
+  color: RED;
+  font-family: 'poppins'; 
+  font-size: 12px; 
+  margin: 0;
+  padding: 0;
+  margin-right: 80px;
+
+}
+.signup-form-error-username {
+  width: 100%;
+  text-align: left;
+  position: absolute;
+  top:53%;
+  left: 17%; 
+ 
+}
+
+
+.signup-form-error-email {
+  text-align: left;
+  width: 100%;
+  position: absolute;
+  top:62%;
+  left: 17%; 
+  
+}
+
+.signup-form-error-password {
+  text-align: left;
+  width: 100%;
+  position: absolute;
+  top:80%;
+  left: 17%; 
+  
+} 
+.signin-form-error-message {
+  position: absolute;
+  top: 48% ;
+  left: 20%;
+  font-size: 12px;
+  background: none;
+  color: red;
+  
+} 
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  margin-top: 5px;
+}
+.alert-info {
+  background: #d1ecf1;
+  color: #1e5461;
+  margin-top: 5px;
+}
+.reset-password-box {
+  overflow: hidden;
+  width: 50%;
+  height: 60%;
+  position: relative;
+  border-radius: 10px;
+  margin: auto;
+  top: 10%;
+  background: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+.reset-password-form-box  {
+  width: 100%;
+}
+.reset-password-confirm {
+  width: 60%;
+  height: 60%;
+  margin: auto;
+  margin-top: 200px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+.reset-password-confirm-form-box  {
+  width: 100%;
+}
+.reset-password-confirm-form-box form p {
+  font-family: 'poppins';
+  font-size: 1.0rem;
+}
+@media screen and (max-width: 1100px) {
+  .parent {
+    width: 100%;
+  }
+  .nav-image {
+    justify-content: space-between;
+  }
+  .nav-image .heart {
+    width: 15%;
+    object-fit: cover;
+  }
+  .nav-image .cart {
+    width: 15%;
+    object-fit: cover;
+  }
+  nav .usermale {
+    width: 15%;
+    object-fit: cover;
+  }
+  .form-container form p {
+    font-weight: bold;
+    font-family: "lobster";
+    font-size: 1.5rem;
+  }
+  .form-container form .socialmedia a {
+    display: inline-flex;
+    text-decoration: none;
+    border-radius: 50%;
+    /* padding: 5px 5px; */
+    margin: 0 5px;
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    background: whitesmoke;
+  }
+  .reset-password-box {
+    width: 50%;
+  }
+  .reset-password-form-box form p {
+    font-weight: bold;
+    font-size: 2.0rem;
+  }
+  #error-danger p {
+    color: RED;
+    font-family: 'poppins'; 
+    font-size: 12px; 
+
+  }
+  .reset-password-box  {
+    width: 70%;
+    height: 70%;
+    
+  }
+  .reset-password-form-box  {
+    width: 100%;
+    
+  }
+}
+@media screen and (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+  .nav-image {
+    justify-content: center;
+  }
+  .nav-image .heart {
+    width: 15%;
+    object-fit: cover;
+  }
+  .nav-image .cart {
+    width: 15%;
+    object-fit: cover;
+  }
+  .nav-image .usermale {
+    width: 15%;
+    object-fit: cover;
+  }
+  .nav-links {
+    position: absolute;
+    right: 0;
+    height: 90vh;
+    top: 10vh;
+    background: black;
+    flex-direction: column;
+    opacity: 0;
+    width: 100%;
+    pointer-events: none;
+    transition: transform 0.5s ease;
+    /* animation: navslide 0.5s ease;*/
+  }
+  .burger {
+    position: absolute;
+    right: 5%;
+    top: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .nav-links li {
+    opacity: 0;
+  }
+
+  .overlay-container {
+    display: none;
+  }
+  .parent {
+    width: 100%;
+  }
+  .form-container .arrow {
+    display: inline-flex;
+    text-decoration: none;
+    border-radius: 50%;
+    padding: 5px 5px;
+    margin: 10px 10px;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    background: whitesmoke;
+    transform: scale(-1);
+  }
+  #signinarrownav:hover {
+    content: "signup";
+    color: black;
+  }
+  .form-container .arrow img {
+    width: 100%;
+  }
+  .form-container {
+    width: 100%;
+  }
+  .form-container form p {
+    font-size: 2.5rem;
+    margin: 2px;
+  }
+  .form-container form span {
+    margin: 5px;
+  }
+  .form-container form {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .signin-container {
+    width: 100%;
+    z-index: 1;
+  }
+  .signup-container {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(0%);
+  }
+
+  .slide-registration .signin-container {
+    transform: translateX(100%);
+    opacity: 0;
+
+    /* opacity: 0;
+    z-index: 1; */
+  }
+  .slide-registration .signup-container {
+    transform: translateX(0%);
+    opacity: 1;
+    z-index: 5;
+    /* opacity: 0;
+    z-index: 3; */
+  }
+  .slide-registration .form-container .arrow {
+    transform: scale(1);
+  }
+  .reset-password-box {
+    width: 80%; 
+  }
+  .signup-form-error-username {
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    top:43%;
+    left: 2%; 
+   
+  }
+  .signup-form-error-email {
+    text-align: left;
+    width: 100%;
+    position: absolute;
+    top:52%;
+    left: 2%; 
+    
+  }
+  
+  .signup-form-error-password {
+    text-align: left;
+    width: 100%;
+    position: absolute;
+    top:70%;
+    left: 2%; 
+    
+  }
+  .signin-form-error-message {
+    position: absolute;
+    top: 40% ;
+    left: 3%;
+
+    font-size: 11px;
+    background: none;
+    color: red;
+    
+  } 
+  #error-danger-reset-email {
+   top: 54%;
+    margin-left: 10px;
+  
+  }
+  
+}
+.nav-deactivate {
+  transform: translateX(100%);
+  pointer-events: none;
+}
+
+/* animations */
+
+.container.right-panel-active .signin-container {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.container.right-panel-active .signup-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 3;
+}
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+@keyframes navslideActive {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+    pointer-events: all;
+  }
+}
+@keyframes navslideDeactivate {
+  from {
+    opacity: 1;
+    transform: translateX(0%);
+    /* pointer-events: all; */
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+    /* pointer-events: none; */
+  }
+}
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}

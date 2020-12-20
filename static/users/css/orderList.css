@@ -1,0 +1,350 @@
+.section_calc {
+	background: #f1f4f7;
+	border-radius: 4px;
+	box-shadow: 2px 2px 4px lightgray;
+	position: relative;
+	height: 130vh;
+	display: grid;
+	width: 80%;
+	margin: auto;
+	grid-gap: 10px;
+	margin-top: 50px;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-areas:
+	  "side-nav calculation calculation calculation"
+	  "side-nav calculation calculation calculation"
+	  ". calculation calculation calculation";
+  }
+  .side-nav h1 {
+	margin-left: 20px;
+  }
+  .side-nav p {
+	margin-left: 20px;
+  }
+  .section_calc .side-nav {
+	margin: 0;
+	padding: 0;
+	width: 140px;
+	grid-area: side-nav;
+  }
+  
+  .side-nav ul {
+	width: 100%;
+	/* margin: 0;
+	padding: 0; */
+	margin-top: 20px;
+	position: relative;
+	display: flex;
+  
+	/* justify-content: flex-start; */
+	flex-direction: column;
+	text-align: left;
+	list-style: none;
+  }
+  .side-nav li {
+	margin: 20px;
+	transition: all 0.3s;
+  }
+  .side-nav a {
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+	/* text-align: left; */
+	color: black;
+  }
+  
+  .side-nav li a:hover {
+	font-weight: 900;
+	font-size: 20px;
+	/* color: rgb(127, 140, 245); */
+  }
+  .side-nav ul li .act {
+	pointer-events: none;
+  }
+  .section_calc hr {
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	top: 10%;
+  }
+  .section_calc .vertical {
+	position: absolute;
+	left: 30.3%;
+	width: 1px;
+	height: 100%;
+	background: grey;
+  }
+  .section_calc .calculation {
+	overflow: hidden;
+	grid-area: calculation;
+	color: grey;
+	font-size: 12px;
+	margin-right: 200px;
+  
+	width: 100%;
+  }
+  .section_calc .calculation .box1 {
+	position: relative;
+  
+	color: grey;
+	font-size: 12px;
+	margin-left: 100px;
+	margin-top: 90px;
+	width: 100%;
+	height: 30%;
+	/* background-color: aqua; */
+  }
+  .section_calc .calculation .box1 b {
+	color: black;
+  }
+  .section_calc .calculation .box1 .box1-hr {
+	position: absolute;
+	background: grey;
+	margin-left: 80px;
+	width: 35%;
+	height: 2px;
+	top: 32%;
+  }
+  .calculation .box1 .bill {
+	position: relative;
+	width: 50%;
+	font-size: 12px;
+	margin-left: 80px;
+	margin-top: 10px;
+  }
+  .calculation .box1 .bill .box1-hr2 {
+	position: absolute;
+	background: grey;
+	width: 70%;
+	height: 2px;
+	top: 100%;
+  }
+  .calculation .box1 .bill p .b1 {
+	padding-left: 90px;
+	margin: 0;
+  }
+  .calculation .box1 .bill p .b2 {
+	padding-left: 90px;
+  }
+  .calculation .box1 .bill p .b3 {
+	padding-left: 10px;
+  }
+  .calculation .box1 .bill p .b4 {
+	padding-left: 60px;
+  }
+  .calculation .box1 .box1-hr3 {
+	position: absolute;
+	width: 90%;
+	top: 100%;
+  }
+  .calculation .box2 {
+	position: relative;
+	font-size: 12px;
+	margin-left: 100px;
+	margin-top: 20px;
+	width: 50%;
+	height: 10%;
+  }
+  .calculation .box2 .phn {
+	height: 50%;
+	margin: 0;
+	width: 100%;
+	display: flex;
+  }
+  .calculation .box2 .email {
+	position: relative;
+	height: 50%;
+	width: 100%;
+	display: flex;
+  }
+  
+  .calculation .box2 .email p {
+	position: absolute;
+	left: 23px;
+  }
+  .calculation .box2 .phn img {
+	margin-right: 2px;
+	height: 40%;
+	object-fit: cover;
+  }
+  .calculation .box2 .email img {
+	margin-right: 2px;
+	margin-left: 3px;
+	height: 40%;
+	object-fit: cover;
+  }
+  .calculation .box2 .box2-hr {
+	position: absolute;
+	top: 110%;
+	width: 165%;
+  }
+  .calculation .box3 {
+	position: relative;
+  
+	margin-left: 100px;
+	margin-top: 20px;
+	width: 85%;
+	height: 18%;
+  }
+  .calculation .box3 .box3-hr {
+	position: absolute;
+	top: 110%;
+	width: 97%;
+  }
+  .calculation .box4 {
+	position: relative;
+	margin-left: 100px;
+	margin-top: 20px;
+	width: 85%;
+	height: 15%;
+  }
+  .ordered-items-box {
+	color: grey;
+	background: #f1f4f7;
+	border-radius: 5px;
+	width: 60%;
+	height: auto;
+	margin: auto;
+	margin-top: 20px;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  }
+  .ordered-item {
+	cursor: pointer;
+	display: flex;
+	border-radius: 5px;
+	background: white;
+	height: 150px;
+	font-size: 12px;
+	width: 80%;
+	margin-left: 20px;
+  }
+  .ordered-item img {
+	object-fit: cover;
+	padding: 10px;
+	height: 100%;
+	width: 20%;
+	margin-left: 20px;
+	margin-right: 20px;
+  }
+  .ordered-item-details {
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+  }
+  .ordered-item-details .size-qty {
+	position: relative;
+	display: flex;
+  }
+  .ordered-item-details .size-qty #qty {
+	margin-left: 10px;
+  }
+  
+  @media screen and (max-width: 1000px) {
+	.section_calc {
+	  width: 80%;
+	}
+	/* .calculation .box1 {
+	  width: 90%;
+	}
+	.calculation .box1 .bill {
+	  width: 90%;
+	} */
+  }
+  @media screen and (max-width: 800px) {
+	body {
+	  overflow-x: hidden;
+	}
+	.section_calc {
+	  width: 95%;
+	}
+	.section_calc .side-nav {
+	  margin: 0;
+	  padding: 0;
+	  width: 70px;
+	  grid-area: side-nav;
+	}
+	.side-nav li {
+	  margin-left: 5px;
+	  margin-top: 60px;
+	}
+	.side-nav h1 {
+	  margin-top: 20px;
+	  margin-left: 5px;
+	  font-size: 12px;
+	}
+	.side-nav p {
+	  margin-left: 5px;
+	}
+	.section_calc .calculation .box1 .box1-hr {
+	  top: 24%;
+	}
+	.section_calc .vertical {
+	  left: 18.3%;
+	}
+	.section_calc .side-nav {
+	  font-size: 12px;
+	}
+	.section_calc .calculation .box1 {
+	  /* width: 90%; */
+	  margin-top: 120px;
+	  margin-left: 30px;
+	}
+	.calculation .box1 .bill {
+	  width: 100%;
+	  margin-left: 30px;
+	}
+  
+	.calculation .box2 {
+	  width: 90%;
+	  margin-left: 30px;
+	}
+	.calculation .box3 {
+	  width: 90%;
+	  margin-left: 30px;
+	}
+	.calculation .box4 {
+	  width: 90%;
+	  margin-left: 30px;
+	}
+	.order-box {
+	  width: 90%;
+	}
+	.inner-box {
+	  grid-template-areas:
+		"orders orders"
+		"btns btns";
+	}
+	.quantity {
+	  height: 72px;
+	  width: 50px;
+	  background: grey;
+	  position: absolute;
+	  opacity: 0.6;
+	  left: 22%;
+	}
+  
+	.orders h1 {
+	  color: white;
+	  position: absolute;
+	  left: 25%;
+	  top: 30%;
+	  z-index: 10000;
+	}
+	.column-orders {
+	  margin: 40px;
+	  width: 90%;
+	  grid-area: orders;
+	  margin-left: 20px;
+	}
+	.ordered-items-box {
+	  width: 90%;
+	  margin-left: 18px;
+	}
+
+}
+  
+  
+  

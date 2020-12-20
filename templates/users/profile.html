@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/profile.css' %}">
+{% endblock %} 
+
+{% block content %}
+  <div class="background-nav">
+  </div>
+  	 <div style="height: 400px;" class="container mt-5 mb-5">
+      <div class="row mb-4">
+        <div style="font-size: 25px; font-weight: 400;" class="col-12">
+          Your Account
+        </div>
+        <div style="font-size: 20px;margin-top: 10px; font-weight: 200;" class="col-12">
+          {{user.username}}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-4 mt-3">
+          <div class="media profile-col py-3 px-2">
+            <img src="{% static 'img/order.png' %}" alt="" />
+            <div style="line-height: 1.3rem;" class="media-body pt-2 pl-2">
+              <span style="font-size: 20px; font-weight: 400;"
+                ><a href="{% url 'orders' %}">Your Orders</a></span
+              ><br />
+              <span style="font-size: 14px;"
+                >Track, return or buy things again</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 mt-3">
+          <div class="media profile-col py-3 px-2">
+            <img width="65px" class="img-fluid" src="{% static 'img/login.png' %}" alt="" />
+            <div style="line-height: 1.3rem;" class="media-body pt-1 pl-2">
+              <span style="font-size: 20px; font-weight: 400;"
+                ><a href="{% url 'profile-details' %}">LogIn & Security</a></span
+              ><br />
+              <span style="font-size: 14px;"
+                >Edit Login username , password and mobile number</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 mt-3">
+          <div class="media profile-col py-3 px-2">
+            <img width="65px" src="{% static 'img/address.png' %}" alt="" />
+            <div style="line-height: 1.3rem;" class="media-body pt-1 pl-2">
+              <span style="font-size: 20px; font-weight: 400;"
+                ><a href="{% url 'addresses' %}">Addresses</a></span
+              ><br />
+              <span style="font-size: 14px;"
+                >Edit Addresses for your orders</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <!-- <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet" /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/Account_Style.css' %}"
+      type="text/css"
+    />
+    <title>LogOut</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href=""><h1>SastaStop</h1></a>
+        <img src="{% static 'img/boy.png' %}" alt="logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="">Categories</a></li>
+        <div class="navscroll">
+          <li><a href="">Men</a></li>
+        </div>
+        <li><a href="">Women</a></li>
+      </ul>
+      <div class="nav-image">
+        <img class="cart" src="{% static 'img/cart.png' %}" alt="cart" />
+        <img class="heart" src="{% static 'img/heart.png' %}" alt="heart" />
+        <!-- <img class="usermale image" src="./img/male.png" alt="" /> -->
+        <img
+          class="userfemale image"
+          src="{% static 'img/female.png' %}"
+          alt=""
+        />
+      </div>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+    <ul class="dropdown">
+      <li><a href="{% url 'account-registration' %}">log in</a></li>
+
+      <li><a href="">Orders</a></li>
+      <li><a href="">Wishlist</a></li>
+      <li><a href="">Contact us</a></li>
+      <li><a href="">Edit Profile</a></li>
+    </ul>
+
+    <footer>
+      <h1>Follow us On</h1>
+      <div class="social">
+        <img src="{% static 'img/utube.png' %}" alt="" />
+        <img src="{% static 'img/insta.png' %}" alt="" />
+        <img src="{% static 'img/facebook.png' %}" alt="" />
+      </div>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </footer>
+    <script src="{% static 'js/Account.js' %}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200,
+        duration: 2000,
+      });
+    </script>
+  </body>
+</html>

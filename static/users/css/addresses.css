@@ -1,0 +1,210 @@
+
+body{
+  background-color: white;
+}
+.profile-breadcrumb {
+  background-color: #f4f6f9;
+}
+.profile-breadcrumb li a{
+  color:black;
+}
+.profile-breadcrumb li a:hover{
+   color: #780202;
+}
+.address-box {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+              0 2px 2px rgba(0,0,0,0.11), 
+              0 4px 4px rgba(0,0,0,0.11), 
+              0 6px 8px rgba(0,0,0,0.11),
+              0 8px 16px rgba(0,0,0,0.11);
+  border-top-right-radius:  25px;
+  border-bottom-right-radius:25px; 
+  border-bottom-left-radius:25px; 
+  border-top-left-radius: 25px;
+
+  color:white;
+  background-color: #CCCCCC;
+  border:2px solid #474B4F;
+  position: relative;
+}
+
+.main-box{
+  height: 200px;
+}
+.address-box .container-add-address {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+}
+
+.address-row [class*="col-"] .address-box {
+  transition: transform 0.4s ease;
+
+  color:black;
+}
+
+.address-row [class*="col-"] .address-box:hover{
+   
+  background-color: white;
+  transform: scale(1.05);
+}
+.address-row [class*="col-"] .address-box:hover .address-links{
+  color:black;
+}
+.address-links {
+  color: black;
+  text-decoration: none;
+}
+.address-links:hover {
+  color: black;
+}
+/*
+.address-box .edit-links {
+  position: absolute;
+  bottom: 10px;
+}
+*/
+.address-box .edit-links a {
+  background-color:white;
+  color: black;
+  border:1px solid black;
+  outline: none;
+}
+
+.edit-links{
+  border:none;
+  outline: none;
+}
+.main-box:hover{
+  background-color: white !important;
+}
+
+.delete-btn{
+  position: absolute;
+  right:20px;
+  bottom:10px;
+  font-size: 30px;
+}
+.delete-icon{
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.delete-icon:hover{
+
+  animation: shake 0.2s;
+  animation-iteration-count: infinite;  }
+
+/*
+ 10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+ 60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+*/
+@keyframes shake {
+  0% { transform: translate(0px, 0px) rotate(0deg) scale(1.4); }
+  25%{ transform: translate(1px, 1px) rotate(1deg) scale(1.4); }
+  50% { transform: translate(-1px, -1px) rotate(-1deg) scale(1.4); }
+ 75%{ transform: translate(2px, -1px) rotate(2deg) scale(1.4); }
+  100% { transform: translate(-1px, 1px) rotate(-1deg) scale(1.4); }
+}
+
+
+/*form modal css*/
+#address-form {
+      padding: 20px 0px;
+
+    }
+    .form-content {
+      width: 100%;
+
+    }
+    .input-group input {
+
+      width: 49%;
+      height: 50px;
+      font-size: 14px;
+      border: 1px solid #e5e7eb;
+      padding: 15px;
+      color: black;
+      outline: none;
+    }
+    #name,#city{
+      margin-right: 2%;
+    }
+    .input-group input:focus {
+      border: 1px solid black;
+    }
+    .input-group textarea {
+      width: 100%;
+      border: 1px solid #e5e7eb;
+      padding: 15px;
+      color: black;
+      resize: none;
+      outline: none;
+    }
+    .input-group textarea:focus {
+      border: 1px solid black;
+    }
+    .input-group {
+      margin-top: 10px;
+    }
+
+    .input-group .address-submit {
+      background-color: black;
+      padding: 10px 30px;
+      margin-top: 10px;
+      outline: none;
+      border: none;
+      color: white;
+    }
+
+    .input-group .address-cancel {
+      margin-left: 2%;
+      background-color: white;
+      padding: 10px 30px;
+      margin-top: 10px;
+      outline: none;
+      border: none;
+      border: 1px solid #e5e7eb;
+      color: black;
+    }
+
+    .modal-header {
+      background-color: black;
+      color:white;
+      font-size: 20px;
+      font-weight: 100;
+      padding: 25px auto;
+    }
+    .modal-body {
+      padding: 0px auto;
+      
+       
+    }
+    .close{
+      color:white;
+    }
+    .close:hover{
+      color:white;
+    }
+
+
+.modal-content{
+  animation: animateTop 0.4s forwards;
+}
+
+@keyframes animateTop {
+  0% {top:-300px; opacity:0}
+  100% {top:13vh; opacity:1}
+
+}
+
+
+/*emd*/

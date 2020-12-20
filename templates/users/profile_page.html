@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/profile_page.css' %}">
+{% endblock %} 
+
+{% block content %}
+    <div class="entire-body" id="enbo">
+        <div id="account-user">
+            <div class="account-heading" style="font-size:18px;font-weight:800">Account</div>
+             <div class="img-photo">
+                 <div class="AHI"><img src="{{ user.profile.image.url }}" alt="" width="30px"
+                    height="30px" style="border-radius: 50%;margin-right: 5px;"></div>
+                <div>{{ user.username}}</div>
+             </div>
+            </div>
+        <div class="profile-body">
+            <div class="other-info-list">
+                <div class="info-list">
+                    <div class="profile-img info">
+                        <img src="{{ user.profile.image.url }}" alt="default.jpg" width="100px"
+                            height="100px" style="border-radius: 50%;">
+                    </div>
+                    <div class="dashboard info">
+                        <a href="">Dashboard</a>
+                    </div>
+                    <div class="account info">
+                        <div class="seg">ACCOUNT</div>
+                        <a href="" id="profile">Profile</a>
+                        <br>
+                        <a href="" id="address">Addresses</a>
+                    </div>
+                    <div class="order info">
+                        <div class="seg">ORDERS</div>
+                        <a href="" id="orders">Orders & Returns</a>
+                    </div>
+                    <div class="payment info " style="border-bottom: none;">
+                        <div class="seg">PAYMENT OPTION</div>
+                        <a href="" id="g-p"><i class="fab fa-google"> </i>-Pay</a>
+                        <br>
+                        <a href="" id="p-p">Phone-Pe</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="profile-details">
+                <div class="info-name">
+                    Profile Details
+                </div>
+                <table class="detail-table">
+                    <tbody class="table-tbody">
+                        <tr>
+                            <td>Full Name</td>
+                            <td>{{user.username}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile </td>
+                            <td>{{user.profile.phone}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email Id</td>
+                            <td>{{user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>
+                                {% if user.profile.gender == 2 %}
+                                not defined
+                                {% elif user.profile.gender == 1 %}
+                                FEMALE
+                                {% elif user.profile.gender == 0 %}
+                                   MALE
+                                {% endif %}
+                                </td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>{{user.profile.birth_date}}</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>{{user.city}}</td>
+                        </tr>
+                        <tr>
+                            <td>Alternate Mobile</td>
+                            <td>--not added--</td>
+                        </tr>
+                        <tr>
+                            <td>Nickname</td>
+                            <td>--not added--</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="edit-profile-button">
+                    <button>
+                        <a href="{% url 'profile-edit' %}" style="text-decoration: none; color: white;">
+                        Edit Profile
+                    </a></button>
+                </div>
+            </div>
+           
+
+        </div>
+    </div>
+    <div class="bar">
+        <div class="shopping-options-bar">
+            <li class="shop ">SHOP FOR<i class="fas fa-shopping-basket" style="margin-left:5px ;"></i>
+    
+            </li>
+            <li class="men sps">
+                <a href="" class="sp-link">MEN</a>
+            </li>
+            <li class="women sps">
+                <a href="" class="sp-link">WOMEN</a>
+            </li>
+            <li class="kid sps">
+                <a href="" class="sp-link">KIDS</a>
+            </li>
+            <li class="gadgets sps">
+                <a href="" class="sp-link">GADGETS</a>
+            </li>
+        </div>
+        <div class="contact" style="color: white;">
+            <div class="log-out-button">
+                <button>LOG OUT</button>
+            </div>
+            <a href="">
+            CONTACT US
+        </a></div>
+    </div>
+{% endblock %}
+    <!-- <script src="./profile.js"></script>
+
+
+</html> -->
